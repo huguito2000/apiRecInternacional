@@ -211,7 +211,7 @@ def vacanteIA(headers):
         print('Se creo la vacante con IA')
         return 'Se creo la vacante con IA', vacantId
     except Exception as e:
-        print('No se creo la vacante con IA', e)
+        print('No se creo la vacante con IA', {e})
         return 'No se creo la vacante con IA'
 
 
@@ -224,7 +224,7 @@ def publicarIA(headers):
         print('Se publico la vacante con IA')
         return 'Se publico la vacante con IA'
     except Exception as e:
-        print('No se publico la vacante con IA', e)
+        print('No se publico la vacante con IA', {e})
         return 'No se publico la vacante con IA'
 
 

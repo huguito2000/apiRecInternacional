@@ -16,9 +16,9 @@ def happypath():
         crearVacanteManual(headers, recruiterID)
         print('\n')
         CrearVacanteIA(headers)
-        print('Se hizo el happy path correctamente')
+        print('\nSe hizo el happy path correctamente')
         return 'Se hizo correctamente el happy path'
     except Exception as e:
-        print('No se hizo el happy path', e)
+        print('No se hizo el happy path', {e})
         return 'No se hizo el happy path'
 

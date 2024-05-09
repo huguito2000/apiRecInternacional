@@ -24,7 +24,7 @@ def registro():
         print('\n Se hizo el registro correcto')
         return 'Se hizo el registro correcto'
     except Exception as e:
-        print('No se hizo el registro', e)
+        print('No se hizo el registro', {e})
         return 'No se hizo el registro'
 
 

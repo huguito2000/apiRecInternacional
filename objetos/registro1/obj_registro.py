@@ -20,7 +20,7 @@ def registro1():
         print('se mandan los datos')
         return resultado, headers, correo
     except Exception as e:
-        print('No se realizo la primera parte del registro')
+        print('No se realizo la primera parte del registro', {e})
         return 'No se realizo el primer paso del registro'
 
 

@@ -1,4 +1,9 @@
 from objetos.obj_login import hacerLogin
+import logging
+
+
+class LoginFailedError:
+    pass
 
 def login():
     try:
@@ -9,9 +14,12 @@ def login():
         print('el token' + str(headers))
         print('paso el login')
         return 'Se hizo login correctamente', headers, recruiter
+    except LoginFailedError as e:
+        logging.error(f"Error de login: {str(e)}")
+        return {'error': str(e)}
     except Exception as e:
-        print('No se paso el login', str(e))
-        return 'No se realizo el login'
+        logging.exception(f"Error inesperado durante el login: {str(e)}")
+        return {'error': str(e)}
 
 
 

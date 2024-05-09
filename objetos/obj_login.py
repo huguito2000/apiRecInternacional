@@ -18,7 +18,7 @@ def hacerLogin():
         }
         return resultado, headers, token
     except Exception as e:
-        print('\n No se hizo el login', e)
+        print('\n No se hizo el login', {e})
         return 'no se hizo el login'
 
 

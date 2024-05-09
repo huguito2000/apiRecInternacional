@@ -15,5 +15,5 @@ def registro4(headers):
         print('Se manda el paso 4 del registro')
         return 'Se mando el paso 4 del registro'
     except Exception as e:
-        print('No se mando el paso 4', e)
+        print('No se mando el paso 4', {e})
         return 'No se mando el paso 4 '

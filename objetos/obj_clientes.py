@@ -12,7 +12,7 @@ def fotoCliente(clientId, headers):
         print('Se subio la foto del cliente')
         return 'Se subio la foto del cliente'
     except Exception as e:
-        print('No se subio la foto del cliente', e)
+        print('No se subio la foto del cliente', {e})
         return 'No se subio la foto del cliente'
 def newClient(headers):
     try:
@@ -38,7 +38,7 @@ def newClient(headers):
         print('\n se creo un nuevo cliente con el id', clientId)
         return clientId
     except Exception as e:
-        print('\n No se creo el cliente', e)
+        print('\n No se creo el cliente', {e})
         return 'No se creo el cliente'
 
 def eliminarCliente(headers):
@@ -50,7 +50,7 @@ def eliminarCliente(headers):
         print('se elimino el cliente')
         return 'Se elimino el cliente'
     except Exception as e:
-        print('\n No se elimino el cliente', e)
+        print('\n No se elimino el cliente', {e})
         return 'No se elimino el cliente'
 
 

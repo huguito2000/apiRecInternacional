@@ -24,7 +24,7 @@ def crearVacanteManual(headers, recruiterId):
         print('\n Se creo la vacante manual')
         return 'Se creo la vacante manual'
     except Exception as e:
-        print('\n No se creo la vacante manual', e)
+        print('\n No se creo la vacante manual', {e})
         return 'No se creo la vacante manual'
 
 def CrearVacanteIA(headers):
@@ -33,8 +33,7 @@ def CrearVacanteIA(headers):
         print('Se crea la vacante por IA')
         return 'Se crea la vacante por IA'
     except Exception as e:
-        print('No se creo la vacante con IA', e)
+        print('No se creo la vacante con IA', {e})
         return 'No se creo la vacantre con IA'
 
 
-crearVacanteManual(headers, recruiterID)

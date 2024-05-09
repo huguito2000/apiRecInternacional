@@ -4,40 +4,6 @@ from test.login import login
 
 respuesta, headers, recruiterID = login()
 
-
-def nombrePerfil(headers):
-    try:
-        nombre = nombres()
-        apellidoP = apellidos()
-        apellidoM = apellidos()
-
-        myBody = [
-            {
-                "op": "replace",
-                "path": "/user/name",
-                "value": nombre
-            },
-            {
-                "op": "replace",
-                "path": "/user/lastName",
-                "value": apellidoP
-            },
-            {
-                "op": "replace",
-                "path": "/user/secondLastName",
-                "value": apellidoM
-            }
-        ]
-
-        url = base + 'user/recruiter'
-        sendPatch(url, headers, myBody, 200)
-        print('se cambian los nombres')
-        return 'Se subieron los nombres correctamente'
-    except Exception as e:
-        print('\n no se hizo el cambio de los nombres', e)
-        return 'No se subio el cambio de los nombres'
-
-
 def fotoPerfil(headers):
     try:
         urlfoto = base + 'files/upload/uploadFile?typeFile=URL_PHOTO'
@@ -73,4 +39,36 @@ def cambioEmail(headers):
         print('\n No se pudo hacer el cambio de email', e)
         return 'no se mando el cambio de email'
 
+
+def nombrePerfil(headers):
+    try:
+        nombre = nombres()
+        apellidoP = apellidos()
+        apellidoM = apellidos()
+
+        myBody = [
+            {
+                "op": "replace",
+                "path": "/user/name",
+                "value": nombre
+            },
+            {
+                "op": "replace",
+                "path": "/user/lastName",
+                "value": apellidoP
+            },
+            {
+                "op": "replace",
+                "path": "/user/secondLastName",
+                "value": apellidoM
+            }
+        ]
+
+        url = base + 'user/recruiter'
+        sendPatch(url, headers, myBody, 200)
+        print('se cambian los nombres')
+        return 'Se subieron los nombres correctamente'
+    except Exception as e:
+        print('\n no se hizo el cambio de los nombres', e)
+        return 'No se subio el cambio de los nombres'
 

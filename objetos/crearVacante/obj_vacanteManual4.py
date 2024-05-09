@@ -81,5 +81,5 @@ def paso7(vacantId, headers):
         print('\n Se publico la vacante correctamente')
         return 'Se publico la vacante correctamente'
     except Exception as e:
-        print('\n No se publico la vacante', e)
+        print('\n No se publico la vacante', {e})
         return 'No se publico la vacante'

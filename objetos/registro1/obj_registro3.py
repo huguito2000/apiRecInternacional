@@ -29,6 +29,6 @@ def registro3(headers):
         print("se manda las notificaciones")
         return 'se mandan las notificaciones'
     except Exception as e:
-        print('No se mandaron las notificaiones', e)
+        print('No se mandaron las notificaiones', {e})
         return 'No se mandaron las notificaiones'
 

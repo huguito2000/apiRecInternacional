@@ -10,5 +10,5 @@ def registro2(headers, correo, code):
         print('Se realizo el segundo paso del registro')
         return 'Se realizo el segundo paso del registro'
     except Exception as e:
-        print('No se realizo el paso 2 del registro', e)
+        print('No se realizo el paso 2 del registro', {e})
         return 'No se realizo el paso 2 del registro'

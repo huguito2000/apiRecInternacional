@@ -11,7 +11,7 @@ def fotoEmpresa(headers):
         print('Se subio la foto de la empresa')
         return 'Se subio corretamente la imagen de la empresa'
     except Exception as e:
-        print('no se pudo subir la foto de la empresa', e)
+        print('no se pudo subir la foto de la empresa', {e})
         return 'no se pudo subir la foto de empresa'
 def empresa(headers):
     try:
@@ -78,6 +78,6 @@ def empresa(headers):
         print('\n se hicieron los cambios de la empresa')
         return 'Se hiceiron los cambios de la empresa'
     except Exception as e:
-        print('\n no se pudieron subir los cambios de la empresa', e)
+        print('\n no se pudieron subir los cambios de la empresa', {e})
         return 'no se subieron los cambios de la empresa'
 

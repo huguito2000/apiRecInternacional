@@ -1,5 +1,5 @@
 from objetos.ajustes.obj_empresa import empresa
-from objetos.ajustes.obj_perfil import nombrePerfil, fotoPerfil, cambioPass, cambioEmail
+from objetos.ajustes.obj_perfil import fotoPerfil, cambioPass, cambioEmail, nombrePerfil
 from objetos.obj_clientes import newClient, eliminarCliente
 from test.login import login
 
@@ -7,28 +7,47 @@ from test.login import login
 
 def cliente(headers):
     try:
+        # Test newClient functionality
         newClient(headers)
-        print('\n')
+        print('Nuevo cliente creado con éxito')
+
+        # Test eliminarCliente functionality
         eliminarCliente(headers)
-        print('Se hizo la prueba correctamente de la sección de clientes')
-        return 'Se hizo la prueba correctamente de la sección de clientes'
+        print('Cliente eliminado con éxito')
+
+        print('\nSe completaron las pruebas de la sección de clientes')
+        return 'Se completaron las pruebas de la sección de clientes'
     except Exception as e:
-        print('No pasaron las pruebas de la sección de clientes', e)
-        return 'No pasaron las pruebas de la sección de clientes'
+        print(f'Fallaron las pruebas de la sección de clientes: {e}')
+        return 'Fallaron las pruebas de la sección de clientes'
 
 def ajustes(headers):
     try:
+        # Test nombrePerfil functionality
         nombrePerfil(headers)
-        print('\n')
+        print('Nombre de perfil actualizado con éxito')
+
+        # Test fotoPerfil functionality
         fotoPerfil(headers)
-        print('\n')
+        print('Foto de perfil actualizada con éxito')
+
+        # Test cambioEmail functionality
         cambioEmail(headers)
-        print('\n')
+        print('Correo electrónico actualizado con éxito')
+
+        # Test cambioPass functionality
         cambioPass(headers)
-        print('\n')
+        print('Contraseña actualizada con éxito')
+
+        # Test empresa functionality
         empresa(headers)
-        print('\n Se hicieron las pruebas de la sección de perfil')
-        return 'Se hicieron las pruebas de la sección de perfil'
+        print('Información de la empresa actualizada con éxito')
+
+        print('\nSe completaron las pruebas de la sección de ajustes')
+        return 'Se completaron las pruebas de la sección de ajustes'
     except Exception as e:
-        print('No se hizo la pruena de la seccion de perfil', e)
-        return 'No se hizo la pruena de la seccion de perfil'
+        print(f'Fallaron las pruebas de la sección de ajustes: {e}')
+        return 'Fallaron las pruebas de la sección de ajustes'
+
+
+

@@ -84,7 +84,7 @@ def paso2(vacantId, headers):
         print('\n Se hizo el segundo paso de la creación de la vacante')
         return 'Se hizo el segundo paso de la creación de la vacante'
     except Exception as e:
-        print('No se hizo el segundo paso de la creación de la vacante', e)
+        print('No se hizo el segundo paso de la creación de la vacante', {e})
         return 'No se hizo el segundo paso de la creación de la vacante'
 
 

@@ -222,5 +222,5 @@ def paso1(headers):
         print('\n Se crea el primer paso de la vacante')
         return 'Se crea el primer paso', vacantId
     except Exception as e:
-        print('No se crea el primer paso', e)
+        print('No se crea el primer paso', {e})
         return 'No se crea el primer paso'

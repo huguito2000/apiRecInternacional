@@ -97,69 +97,6 @@
       <change afterPath="$PROJECT_DIR$/../apiCanInternacionalizacion/objetos/registro/obj_telefono4.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../apiCanInternacionalizacion/test/myCV.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../apiCanInternacionalizacion/test/registro.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/apiRecInternacionalizacion.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/0.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/10.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/6.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/7.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/8.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archivos/img/9.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/0.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/10.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/6.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/7.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/8.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/archivos/img/9.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/obj_empresa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/ajustes/obj_perfil.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteIA.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/funciones.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/obj_clientes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/obj_login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/0.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/10.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/3.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/4.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/6.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/7.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/8.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/archivos/img/9.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/crearVacante.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/happyPath.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/perfil.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/registro.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../horaEntrada/entrada.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../horaEntrada/main.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../horaEntrada/objetos/browser.py" afterDir="false" />
@@ -168,6 +105,26 @@
       <change afterPath="$PROJECT_DIR$/../py-ia-assistant-django-dev/src/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../pythonCurso/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ApiCandidato" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiCandidato" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/ajustes/obj_empresa.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/ajustes/obj_empresa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/ajustes/obj_perfil.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/ajustes/obj_perfil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteIA.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteIA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual1.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual2.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual3.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual4.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/obj_clientes.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/obj_clientes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/obj_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/obj_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/registro1/obj_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/registro1/obj_registro2.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/registro1/obj_registro3.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objetos/registro1/obj_registro4.py" beforeDir="false" afterPath="$PROJECT_DIR$/objetos/registro1/obj_registro4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/crearVacante.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/crearVacante.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/happyPath.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/happyPath.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/perfil.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/perfil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/registro.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../apiReclutador" beforeDir="false" afterPath="$PROJECT_DIR$/../apiReclutador" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../py-ia-assistant-django-dev/src/functional_tests/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../py-ia-assistant-django-dev/src/functional_tests/objetos/configuracion/Obj_perfil.py" beforeDir="false" afterPath="$PROJECT_DIR$/../py-ia-assistant-django-dev/src/functional_tests/objetos/configuracion/Obj_perfil.py" afterDir="false" />
@@ -190,7 +147,26 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "huguito2000"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a05dc7b8-2a87-49c2-8cf7-7b413512e821" />
+        <option name="url" value="https://github.com/huguito2000/apiRecInternacional.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -201,32 +177,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.clientes.executor&quot;: &quot;Run&quot;,
-    &quot;Python.crearVacante.executor&quot;: &quot;Run&quot;,
-    &quot;Python.funciones.executor&quot;: &quot;Run&quot;,
-    &quot;Python.home.executor&quot;: &quot;Run&quot;,
-    &quot;Python.login.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_clientes.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_empresa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_login.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_perfil.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_registro (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_registro.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_vacanteIA.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_vacanteManual.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_vacanteManual1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_vacanteManual2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.obj_vacanteManual3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.registro.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/huguito/PycharmProjects/pythonProject/apiRecInternacionalizacion&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in main.py.executor": "Run",
+    "Python.clientes.executor": "Run",
+    "Python.crearVacante.executor": "Run",
+    "Python.funciones.executor": "Run",
+    "Python.home.executor": "Run",
+    "Python.login.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.obj_clientes.executor": "Run",
+    "Python.obj_empresa.executor": "Run",
+    "Python.obj_login.executor": "Run",
+    "Python.obj_perfil.executor": "Run",
+    "Python.obj_registro (1).executor": "Run",
+    "Python.obj_registro.executor": "Run",
+    "Python.obj_vacanteIA.executor": "Run",
+    "Python.obj_vacanteManual.executor": "Run",
+    "Python.obj_vacanteManual1.executor": "Run",
+    "Python.obj_vacanteManual2.executor": "Run",
+    "Python.obj_vacanteManual3.executor": "Run",
+    "Python.perfil.executor": "Run",
+    "Python.registro.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "desarrollo",
+    "last_opened_file_path": "/Users/huguito/PycharmProjects/pythonProject/apiRecInternacionalizacion"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -239,7 +217,7 @@
       <recent name="$PROJECT_DIR$/objetos" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.obj_vacanteIA">
+  <component name="RunManager" selected="Python.perfil">
     <configuration name="crearVacante" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="apiRecInternacionalizacion" />
       <option name="ENV_FILES" value="" />
@@ -254,6 +232,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/crearVacante.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="apiRecInternacionalizacion" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/login.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -306,7 +306,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="obj_vacanteManual1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="perfil" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="apiRecInternacionalizacion" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -315,11 +315,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/objetos/crearVacante" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/perfil.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -328,57 +328,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="obj_vacanteManual2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in main.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="apiRecInternacionalizacion" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/objetos/crearVacante" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="obj_vacanteManual3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="apiRecInternacionalizacion" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/objetos/crearVacante" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/objetos/crearVacante/obj_vacanteManual3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/main.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.perfil" />
+        <item itemvalue="Python tests.Python tests in main.py" />
+        <item itemvalue="Python.login" />
         <item itemvalue="Python.obj_vacanteIA" />
         <item itemvalue="Python.crearVacante" />
-        <item itemvalue="Python.obj_vacanteManual3" />
-        <item itemvalue="Python.obj_vacanteManual2" />
-        <item itemvalue="Python.obj_vacanteManual1" />
       </list>
     </recent_temporary>
   </component>
@@ -399,5 +370,28 @@
       <updated>1712092426962</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="desarrollo" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
