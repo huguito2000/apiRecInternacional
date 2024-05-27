@@ -1,11 +1,7 @@
-from test.happyPath import happypath
-import unittest
-from unittest import TestCase
+from src.test.crearReportesRecruiter.reportRegisterReclu import report_register_recruiter
 
-class MyTests(TestCase):
-    def test_one(self):
-        self.assertEqual(1, 1)
-        happypath()
+#enviroment = dotenv_values("etc/.env")
 
-if __name__ == '__main__':
-    unittest.main()
+print("comenzado prueba por consola")
+#main(enviroment )
+report_register_recruiter()
