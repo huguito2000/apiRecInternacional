@@ -1,0 +1,9 @@
+venv
+*__pycache__
+*.env
+tmp/*
+
+*.log
+*.pot
+*.pyc
+__pycache__/
