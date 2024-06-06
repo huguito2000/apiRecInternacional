@@ -1,25 +1,48 @@
-from datetime import datetime
-from src.services.funciones import base, send_post, send_put, send_post_headers, send_post_headers_sin_body, nombres, apellidos
+import random
+import json
+from dotenv import dotenv_values
+
+from src.services.catalogs import data_user
+from src.services.peticiones_HTTP import base, send_post, send_put, send_post_headers, send_post_headers_sin_body, \
+    send_get_headers, send_get
+
+env = dotenv_values("etc/.env")
+
+def get_area(headers):
+    url = env["URL_SERVER"] + "management/catalog/area"
+    response: list = send_get_headers(url, headers, 200)
+    try:
+        num = random.randint(0, 10)
+        area = response[num]['areaId']
+        print('areaIds:', area)
+        return area
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f'Error al obtener areaIds: {e}')
 
 
-def email_new():
-    now = datetime.now()
-    correo = 'cand' + str(now.day) + str(now.month) + str(now.minute) + str(now.second) + '@yopmail.com'
-    return correo
+def get_nacionality():
+    url = env["URL_SERVER"] + "management/catalog/nationality"
+    response: list = send_get(url, 200)
+    num = random.randint(0, 100)
+    nationality_id = response[num]['nationalityId']
+    print(nationality_id, num)
+    return nationality_id
 
 
 def step_register_candidate():
     try:
-        correo = email_new()
-        print(correo)
+        _, _, _, _, email_candidate = data_user(env)
+
+        nationality_id = get_nacionality()
         my_body = {
-            "email": correo,
+            "email": email_candidate,
             "keySystem": "ESP",
             "acceptPrivacy": True,
             "acceptTerms": True,
-            "nationalityId": "40288086796ba27001796bbd39f70038"
+            "nationalityId": nationality_id
         }
-        url = base + 'auth/registry/candidate'
+
+        url = env["URL_SERVER"] + 'auth/registry/candidate'
         resultado, headers = send_post(url, my_body, 201)
         headers = headers['token']
         token = headers.replace('Bearer ', '')
@@ -28,16 +51,17 @@ def step_register_candidate():
         }
         print(resultado)
         print(headers)
-        return headers, correo
+        return headers, email_candidate
     except Exception as e:
         print('No paso el registro', e)
         return 'No paso el registro del candidato'
+
 
 def step_create_pass_candidate(headers):
     try:
         print("se manda la contraseña...")
         password = "Abcd.1234"
-        url = base + 'auth/create-pass?password=' + password
+        url = env["URL_SERVER"] + 'auth/create-pass?password=' + password
         send_put(url, headers, 200)
         print('paso la creacion de la contraseña')
         return 'paso la creacion de la contraseña'
@@ -74,10 +98,10 @@ def step_permission_candidate(headers):
                 "permissionType": "RECOMMENDATIONS"
             }
         ]
-        url = base + 'user/permissions/register-list'
+        url = env["URL_SERVER"] + 'user/permissions/register-list'
         send_post_headers(url, headers, my_body, 200)
-        print('no pasaron los permisos de notificaiones')
-        return 'No pasaron los permisos de notificaciones de candidato'
+        print('pasaron los permisos de notificaciones')
+        return 'pasaron los permisos de notificaciones de candidato'
     except Exception as e:
         print('No pasaron los permisos', e)
         return 'No pasaron los permisos del candidato'
@@ -85,7 +109,7 @@ def step_permission_candidate(headers):
 
 def step_phone_candidate(headers):
     try:
-        url = base + 'auth/send-sms?phone=999999990&phoneCode=%2B34'
+        url = env["URL_SERVER"] + 'auth/send-sms?phone=999999990&phoneCode=%2B34'
         code = send_post_headers_sin_body(url, headers, 200)
         print('el codigo del numero es: ' + str(code))
         if code['message'] == "SMS enviado exitosamente.":
@@ -99,7 +123,7 @@ def step_phone_candidate(headers):
 
 def step_resend_code(headers):
     try:
-        url = base + 'auth/resend-sms?phone=999999990'
+        url = env["URL_SERVER"] + 'auth/resend-sms?phone=999999990'
         code = send_post_headers_sin_body(url, headers, 200)
         assert code == 200
         print('volver a Enviar ' + str(code))
@@ -131,20 +155,19 @@ def obtener_code_candidate(headers):
 """
 
 
-def step_names_candidate(headers):
-    name = nombres()
-    last_name = apellidos()
+def step_names_candidate(headers, name, last_name, birth_date):
     try:
+        area = get_area(headers)
         my_body = {
             "name": name,
             "lastName": last_name,
-            "dateBirth": "2000-12-12",
-            "areaId": "40288087797b055a01797b14e5f40036",
+            "dateBirth": str(birth_date),
+            "areaId": area,
             "cityId": "2c9f936481969f0cccc996a00e092521"
         }
-
-        url = base + 'auth/registry/candidate/complete'
+        url = env["URL_SERVER"] + 'auth/registry/candidate/complete'
         send_post_headers(url, headers, my_body, 200)
         print(' se en envia el nombre del candidato')
     except Exception as e:
         print('No se envio el nombre del candidato', e)
+

@@ -1,8 +1,8 @@
 import tkinter as tk
-from src.test.crearReportesRecruiter.ReportCrearVacanteIAReclu import crear_vacante_ia_test
-from src.test.crearReportesRecruiter.ReportCrearVancanteTestReclu import crear_vacante_manual_test
-from src.test.crearReportesRecruiter.reportHappyPathReclu import happypath_test_reclu
-from src.test.crearReportesRecruiter.reportRegisterReclu import report_register_recruiter
+from src.test.create_report_recruiter.report_crear_vacant_IA import crear_vacante_ia_test
+from src.test.create_report_recruiter.report_create_vancant import crear_vacante_manual_test
+from src.test.create_report_recruiter.report_happy_path_reclu import happypath_test_reclu
+from src.test.create_report_recruiter.report_register_reclu import report_register_recruiter
 
 
 def registro_reclutador():

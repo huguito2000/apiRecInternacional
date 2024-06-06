@@ -1,4 +1,5 @@
-from src.services.funciones import base, foto, subir_archivo, nombres, send_patch
+from src.services.catalogs import foto, subir_archivo, nombres
+from src.services.peticiones_HTTP import base, send_patch
 
 
 def photo_company(headers):
@@ -12,6 +13,8 @@ def photo_company(headers):
     except Exception as e:
         print('no se pudo subir la foto de la empresa', {e})
         return 'no se pudo subir la foto de empresa'
+
+
 def company(headers):
     try:
         nombre = nombres()

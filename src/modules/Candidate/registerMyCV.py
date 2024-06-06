@@ -4,7 +4,8 @@ from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull 
 
 def register_cv(correo):
     try:
-        _, headers = step_login_candidate(correo)
+        print('\ninicia el registro del cv', correo)
+        _, _, headers = step_login_candidate(correo)
 
         work_experience(headers)
         print('se manda la experiencia laboral')
@@ -37,7 +38,7 @@ def register_cv(correo):
         print("se sube la imagen de perfil")
 
         print('se termina el CV del candidato')
-        return 'Se termino el CV el candidato'
+        return 'Se termino el registro del CV en el candidato'
     except Exception as e:
         print('No se realizo el registro del CV', e)
         return 'No se realizo el registro del CV'

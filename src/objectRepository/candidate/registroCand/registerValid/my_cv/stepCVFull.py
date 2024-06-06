@@ -1,5 +1,9 @@
-from src.services.funciones import base, send_post_headers, send_put_body, pdfs, subir_archivo, foto
+from dotenv import dotenv_values
 
+from src.services.catalogs import pdfs, subir_archivo, foto
+from src.services.peticiones_HTTP import send_post_headers, send_put_body
+
+env = dotenv_values("etc/.env")
 
 def work_experience(headers):
     try:
@@ -22,14 +26,13 @@ def work_experience(headers):
             }
         ]
 
-        url = base + 'user/candidate/work-experience'
+        url = env["URL_SERVER"] + 'user/candidate/work-experience'
         response = send_post_headers(url, headers, my_body, 200)
         print('Se manda la experiencia laboral', response)
         return 'Se manda la experiencia laboral del candidato'
     except Exception as e:
         print('No paso la experiencia laboral', e)
         return 'No paso la experiancia laboral del candidato'
-
 
 
 def education(headers):
@@ -66,7 +69,7 @@ def education(headers):
                 }
             }
         ]
-        url = base + 'user/candidate/education'
+        url = env["URL_SERVER"] + 'user/candidate/education'
         response = send_post_headers(url, headers, my_body, 200)
         print('Se manda la educacion', response)
         return 'Se manda la educaion'
@@ -90,7 +93,7 @@ def area_experience(headers):
                 ]
             }
         ]
-        url = base + 'user/candidate/area'
+        url = env["URL_SERVER"] + 'user/candidate/area'
         response = send_post_headers(url, headers, my_body, 200)
         print('Se manda el area de experiencia del candidato', response)
         return 'Se manda la experiencia laboral'
@@ -107,7 +110,7 @@ def hard_skills(headers):
                 "skill": "Conocimiento avanzado de Microsoft Excel. "
             }
         ]
-        url = base + 'user/candidate/hard-skill'
+        url = env["URL_SERVER"] + 'user/candidate/hard-skill'
         response = send_post_headers(url, headers, my_body, 200)
         print(response)
         return 'Se manda las habilidades duras'
@@ -123,7 +126,7 @@ def course(headers):
             "insitute": "udemy",
             "name": "istbq"
         }
-        url = base + 'user/candidate/course'
+        url = env["URL_SERVER"] + 'user/candidate/course'
         response = send_put_body(url, headers, my_body, 200)
         print('Se manda el curso del candidato', response)
         return 'Se manda el curso del candidato'
@@ -144,7 +147,7 @@ def certificate(headers):
             "isExpire": False,
             "candidateCertificationId": "ff8080818b82167a018bb0cf881300fc"
         }
-        url = base + 'user/candidate/certification'
+        url = env["URL_SERVER"] + 'user/candidate/certification'
         response = send_put_body(url, headers, my_body, 200)
         print('se mandan las certificaciones del candidate', response)
         return 'Se mandan las certificaiones del candidate'
@@ -160,7 +163,7 @@ def soft_skills(headers):
                 "skill": "Trabajo en equipo"
             }
         ]
-        url = base + 'user/candidate/soft-skill'
+        url = env["URL_SERVER"] + 'user/candidate/soft-skill'
         response = send_post_headers(url, headers, my_body, 200)
         print('se manda las habilidades blandas', response)
         return 'Se mandan las habilidades blandas'
@@ -180,7 +183,7 @@ def language(headers):
                 "level": "NATIVO"
             }
         ]
-        url = base + 'user/candidate/language'
+        url = env["URL_SERVER"] + 'user/candidate/language'
         response = send_post_headers(url, headers, my_body, 200)
         print('Se mandan los idiomas', response)
         return 'Se manda los idiomas'
@@ -191,20 +194,20 @@ def language(headers):
 
 def upload_cv(headers):
     try:
-        url = base + 'files/upload/upload-candidate-cv?md5Hash=123'
+        url = env["URL_SERVER"] + 'files/upload/upload-candidate-cv?md5Hash=123'
         ruta = pdfs()
         print("esta es la ruta del pdf" + ruta)
         response = subir_archivo(ruta, url, headers, 201)
         print('Se subio el cv', response)
         return 'Se sube el CV'
     except Exception as e:
-        print('No se suvio el cv', e)
+        print('No se subio el cv', e)
         return 'No se subio el CV'
 
 
 def upload_photo(headers):
     try:
-        url = base + 'files/upload/uploadFile?typeFile=URL_PHOTO'
+        url = env["URL_SERVER"] + 'files/upload/uploadFile?typeFile=URL_PHOTO'
         ruta = foto()
         print(ruta)
         response = subir_archivo(ruta, url, headers, 201)

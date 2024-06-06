@@ -1,9 +1,8 @@
 import requests
-import json
-import random
 from json import loads
 from dotenv import dotenv_values
-from src.services.catalogs import *
+
+from src.services.catalogs import get_ramdom_nationality, get_ramdom_area, get_ramdom_city
 
 env = dotenv_values("etc/.env")
 
@@ -68,17 +67,20 @@ def step_register_permissions(token):
     response = requests.post(env["URL_SERVER"] + "user/permissions/register-list", headers=headers, json=json_data)
     print(response.content)
 
+
 def step_register_phone(token):
-    ("Registro de telefono")
+    print("Registro de telefono")
     headers.update({'Authorization': token})
     response = requests.post(env["URL_SERVER"] + "auth/send-sms?phone=5555555550&phoneCode=%2B52", headers=headers)
     print(response.content)
+
 
 def step_verify_phone(token):
     print("Verificacion de telefono")
     headers.update({'Authorization': token})
     response = requests.post(env["URL_SERVER"] + "auth/verify-code-sms?code=110901&phone=5555555550&phoneCode=%2B52", headers=headers)
     print(response.content)
+
 
 def step_complete_profile(token, name, lastname, birth_date, area_id, city_id):
     print("Registro de datos finales")
@@ -97,7 +99,7 @@ def step_complete_profile(token, name, lastname, birth_date, area_id, city_id):
 
 def register_candidate(name, lastname, email, password, birth_date):
     token = step_register(email, get_ramdom_nationality()["nationalityId"])
-    if(token != None):
+    if token is not None:
         candidate = get_profile(token)
         step_verify_email(email, candidate["user"]["checkCode"])
         step_create_pass(token, password)

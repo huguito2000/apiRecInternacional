@@ -18,12 +18,12 @@ def get_vacancy(vacancy_id):
 
 
 def addCandidateArea(token, vacancy):
-  area = vacancy["areasVacant"][0]["area"]
-  speciality = area["specialties"][random.randint(0, len(area["specialties"])-1)]
-  area["specialties"] = []
-  area["specialties"].append(speciality)
+    area = vacancy["areasVacant"][0]["area"]
+    speciality = area["specialties"][random.randint(0, len(area["specialties"])-1)]
+    area["specialties"] = []
+    area["specialties"].append(speciality)
   
-  response = requests.post(env["URL_SERVER"] + "user/candidate/area", headers=headers, json=area)
+    response = requests.post(env["URL_SERVER"] + "user/candidate/area", headers=headers, json=area)
 
 def postulation():
   response = requests.post(

@@ -1,13 +1,12 @@
+import random
 from datetime import datetime
-
+from dotenv import dotenv_values
 from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate
-from src.services.funciones import base, send_post
-def email_new():
-    now = datetime.now()
-    correo = 'cand' + str(now.day) + str(now.month) + str(now.minute) + str(now.second) + '@yopmail.com'
-    return correo
+from src.services.catalogs import data_user
+from src.services.peticiones_HTTP import base, send_post
+env = dotenv_values("etc/.env")
 
-correo = email_new()
+name, last_name, second_last_name, birth_date, correo = data_user(env)
 
 data_payloads = [
     {
@@ -71,26 +70,27 @@ data_payloads = [
 
 def register400_candidate(data, code):
     try:
-        url = base + 'auth/registry/candidate'
+        url = env["URL_SERVER"] + 'auth/registry/candidate'
         resultado = send_post(url, data, code)
         print(f"Resultado con datos: {data}, código: {code}")
-        print('Se hicieron las preubas de registro invalido', resultado)
+        print('Se hicieron las pruebas de registro con datos no validos', resultado)
         return 'Se hicieron las pruebas de registro invalido'
     except Exception as e:
-        print(e)
-        return 'No se hizo las pruebas correctamente'
+        print('No pasaron las pruebas de registro', e)
+        return 'No pasaron las pruebas registro con datos incorrectos para el candidato'
 
 
-def register_invalid_candidate():
+def register_invalid_candidate(correo):
     try:
         for data in data_payloads:
-            register400_candidate(data.copy(), 400 if data["email"] else 409)  # Use copy() to avoid modifying original data
-        headers, correo = step_register_candidate()
-        print('Se hicieron las pruebas de login invalido')
-        return 'Se hicieron las pruebas de login', headers, correo
+            register400_candidate(data.copy(), 400 if data["email"] else 409)
+        headers, correo = step_register_candidate(correo)
+        print('Se hicieron las pruebas de registro para un usuario candidato con datos incorrectos')
+        return 'Se hicieron las pruebas de registro para un usuario candidato con datos incorrectos', headers, correo
     except Exception as e:
-        print('no se hicieron las pruebas de login', e)
-        return 'no se hicieron las pruebas de login'
+        print('No pasaron las pruebas de registro', e)
+        return 'No pasaron las pruebas de registro con datos incorrectos'
+
 
 
 
