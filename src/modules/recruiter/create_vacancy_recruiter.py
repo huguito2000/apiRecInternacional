@@ -22,10 +22,10 @@ def create_manual_vacant(headers, recruiter_id):
         review_vacant(vacant_id, headers, recruiter_id)
         print('\n')
         respuesta = post_vacancy(vacant_id, headers)
-        print('\n', respuesta)
+        print('Se crea la vacante manual con exito:) \n', respuesta)
         return respuesta
     except Exception as e:
-        print('\n No se creo la vacante manual', e)
+        print('\n No se creo la vacante manual :(', e)
         return 'No se creo la vacante manual'
 
 

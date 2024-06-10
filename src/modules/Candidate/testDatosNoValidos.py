@@ -15,15 +15,24 @@ from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_d
 
 def candidate_data_invalid(enviroment):
     try:
-        name, last_name, _, birth_date, correo = data_user(enviroment)
+        name, last_name, _, birth_date, _ = data_user(enviroment)
+
         login_no_valido_cand()
+
         login_cand_bloqueado()
-        _, headers, _ = register_invalid_candidate(correo)
+
+        _, headers, _ = register_invalid_candidate()
+
         create_pass_invalido_cand(headers)
+
         step_send_all_combinations_legals(headers)
+
         step_phone_invalid_candidate(headers)
+
         step_verify_code_invalido_cand(headers)
+
         step_names_invalid_cand(headers, name, last_name, birth_date)
+
         print('Se manda las pruebas de candidato con datos invalidos')
         return 'Se hicieron las pruebas de candidato con datos incorrectos de manera exitosa'
     except Exception as e:

@@ -4,7 +4,7 @@ from src.services.catalogs import data_user
 from src.services.peticiones_HTTP import send_post_headers
 
 env = dotenv_values("etc/.env")
-name, last_name, _, birth_date, correo = data_user(env)
+name, last_name, _, birth_date, email_candidate = data_user(env)
 
 myBody = [
     {
@@ -195,7 +195,7 @@ def names_cand400(headers, data, code):
         print('Se Envia la sección de nombre de manera incorrecta')
 
         url = env["URL_SERVER"] + 'auth/registry/candidate/complete'
-        respuesta = send_post_headers(url, headers, myBody, 200)
+        respuesta = send_post_headers(url, headers, myBody, 400)
         print(f"Resultado con datos: {data}, código: {code}")
         print(f'Se mandas la seccion de nombres con respuesta {respuesta}')
         return 'Se realiza la prueba de mandar los nombres errorneos de manera exitosa'
@@ -206,11 +206,13 @@ def names_cand400(headers, data, code):
 
 def step_names_invalid_cand(headers, name, last_name, birth_date):
     try:
+        print('Inicia el envio de nombres con datos incorrectos')
         for data in myBody:
             names_cand400(headers, data, 400)
+            print('\n')
         step_names_candidate(headers, name, last_name, birth_date)
-        print('Se enviaron las prueba de nombres')
+        print('Se enviaron las prueba de nombres invalidos :) \n')
         return 'Se realizo la pruebas de envio de nombres incorrectos y paso de manera correcta'
     except Exception as e:
-        print('No se enviaron las prueba de nombres', e)
+        print('No se enviaron las prueba de nombres :( \n', e)
         return 'No se realizo la prueba de nombres icorrectos'

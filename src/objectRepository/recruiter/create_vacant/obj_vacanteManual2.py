@@ -7,6 +7,7 @@ env = dotenv_values("etc/.env")
 
 def job_description(vacant_id, headers):
     try:
+        print('Se inicia la descripción del trabajo')
         url = env["URL_SERVER"] + 'vacancy/management/' + vacant_id
         print(url)
         my_body = [
@@ -84,10 +85,10 @@ def job_description(vacant_id, headers):
           }
         ]
         send_patch(url, headers, my_body, 200)
-        print('\n Se hizo el segundo paso de la creación de la vacante')
+        print('Se hizo el segundo paso de la creación de la vacante :) \n')
         return 'Se hizo el segundo paso de la creación de la vacante'
     except Exception as e:
-        print('No se hizo el segundo paso de la creación de la vacante', {e})
+        print('No se hizo el segundo paso de la creación de la vacante :( \n', {e})
         return 'No se hizo el segundo paso de la creación de la vacante'
 
 

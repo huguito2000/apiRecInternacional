@@ -7,7 +7,6 @@ from src.services.catalogs import obtener_fecha
 fecha = obtener_fecha()
 
 
-
 def generar_informe_crear_vacante_manual_pdf(nombre_archivo, reporte_login, reporte_crear_vancante_ia):
     c = canvas.Canvas(nombre_archivo, pagesize=letter)
     c.setFont('Helvetica-Bold', 16)
@@ -21,13 +20,14 @@ def generar_informe_crear_vacante_manual_pdf(nombre_archivo, reporte_login, repo
     c.drawString(72, 640, reporte_login)
     c.drawString(72, 610, reporte_crear_vancante_ia)
 
+
 def crear_vacante_ia_test():
     try:
         reporte_login, headers, recruiterID = login_recruiter(email)
         print('\n')
         reporte_crearVancanteIA = post_vacancy_ia(headers)
         print('\n')
-        nombre_archivo = "reportes/Crear_VacanteIA " + fecha + ".pdf"
+        nombre_archivo = "report/Crear_VacanteIA " + fecha + ".pdf"
         generar_informe_crear_vacante_manual_pdf(nombre_archivo, reporte_login, reporte_crearVancanteIA)
         return reporte_crearVancanteIA
     except Exception as e:

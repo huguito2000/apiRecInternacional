@@ -5,14 +5,15 @@ from src.services.catalogs import salary_min
 from src.services.peticiones_HTTP import send_get_headers, base, send_post_headers_sin_body, send_post_headers
 
 env = dotenv_values("etc/.env")
-correo = "huguito.reclutador.es@yopmail.com"
+email_candidate = env["EMAIL_CANDIDATE_HAPPY_PATH"]
+email = env["EMAIL_RECRUITER_HAPPY_PATH"]
 
 
 # se obtiene el ID de la vacanbe regresado el mismo
 def get_vacante_id():
     try:
-        print('\ninicia el login del reclutador')
-        _, headers, _ = login_recruiter(correo)
+        print('\ninicia el login del reclutador', email)
+        _, headers, _ = login_recruiter(email)
         url = env[
                   "URL_SERVER"] + 'user/vacant/admin?pageSize=6&pageNumber=0&sortBy=publicationDate&sortDirection=DESC&status=ACTIVA'
         response = send_get_headers(url, headers, 200)
@@ -29,22 +30,21 @@ def get_preguntas(headers, url, cantidad):
     try:
         questions: list = []
         resultado = send_get_headers(url, headers, 200)
-        print(resultado)
-        contador = len(resultado['content']['questionId'])
-        print('el contador es', contador)
         for i in range(cantidad):
-            questions.append(resultado['content'][i]['questionId'])
+            questions.append(str((resultado['content'][i]['questionId'])))
         print('Se obtienen los Ids de las preguntas')
+
         return questions
     except Exception as e:
-        print('No se pudo obtener los ids de las vacantes', e)
-        return 'No se pudo obtener los ids de las vacantes'
+        print('No se pudo obtener los ids de las preguntas', e)
+        return 'No se pudo obtener los ids de las preguntas'
 
 
 # Se hace la postulacion de la primera vacante que se encuentra
 
 def postulacion(headers):
     try:
+        print("\nInicia el proceso de postulacion")
         vacant_id = get_vacante_id()
         url = env["URL_SERVER"] + 'user/candidate/postulation?vacantId=' + vacant_id
         print(url)
@@ -66,6 +66,7 @@ def experiencia():
 # Se manda la experiencia laboral
 def exp_laboral_cuestionario(headers, postulation_id):
     try:
+        print('Se envia el cuentionario de experiencia laboral\n')
         exp1 = int(experiencia())
         exp2 = int(experiencia())
         url = env[
@@ -73,6 +74,8 @@ def exp_laboral_cuestionario(headers, postulation_id):
 
         preguntas = get_preguntas(headers, url, 2)
         print(preguntas[0])
+        print(preguntas[1])
+
         my_body = [
             {
                 "question": {
@@ -94,11 +97,11 @@ def exp_laboral_cuestionario(headers, postulation_id):
                   "URL_SERVER"] + 'user/candidate/postulation/answer?processId=' + postulation_id + '&questionnaire=EXPERIENCE'
         print(url)
         resultado = send_post_headers(url, headers, my_body, 200)
-        print('Se mandaron las respuestas del cuentionario', resultado)
+        print('Se mandaron las respuestas del cuentionario :)\n', resultado)
         return ('Se respondieron las preguntas del cuestionario en la sección'
                 ' de experiencia laboral, exitosamente')
     except Exception as e:
-        print('No se mando las respuestas del cuestionario', e)
+        print('No se mando las respuestas del cuestionario :(\n', e)
         return 'no se mando las respuestas del cuestionario'
 
 
@@ -110,7 +113,7 @@ nivel = random.choice(niveles)
 # se mandan las preguntas de habilidad profesional
 def habilidad_profesional(headers, postulation_id):
     try:
-        print('inicia las habilidades profecionales')
+        print('inicia las habilidades profesionales \n')
         url = env[
                   "URL_SERVER"] + 'user/candidate/postulation/question?page=0&size=100&processId=' + postulation_id + '&questionnaire=HARD_SKILL'
 
@@ -129,39 +132,45 @@ def habilidad_profesional(headers, postulation_id):
         url = env[
                   "URL_SERVER"] + 'user/candidate/postulation/answer?processId=' + postulation_id + '&questionnaire=HARD_SKILL'
         respuesta = send_post_headers(url, headers, my_body, 200)
-        print(respuesta)
+        print('se envio el cuestionario de habilidades profesionales :)\n', respuesta)
         return 'Se envian las respuestas de las habilidades profesionales'
     except Exception as e:
-        print('No se envian respuestas de las habilidades profesionales correctamente', e)
+        print('No se envian respuestas de las habilidades profesionales :(\n', e)
         return 'No se envian las habilidades profesionales'
 
 
 def habilidad_blandas(headers, postulation_id):
-    print('inicia las habilidades blandas')
-    url = env[
-              "URL_SERVER"] + 'user/candidate/postulation/question?page=0&size=100&processId=' + postulation_id + '&questionnaire=SOFT_SKILL'
+    try:
+        print('inicia las habilidades blandas \n')
+        url = env[
+                  "URL_SERVER"] + 'user/candidate/postulation/question?page=0&size=100&processId=' + postulation_id + '&questionnaire=SOFT_SKILL'
 
-    preguntas = get_preguntas(headers, url, 1)
-    print(preguntas[0])
-    url = env[
-              "URL_SERVER"] + 'user/candidate/postulation/answer?processId=' + postulation_id + '&questionnaire=SOFT_SKILL'
-    my_body = [
-        {
-            "question": {
-                "questionId": preguntas[0]
-            },
-            "value": True,
-            "binaryAnswer": True
-        }
-    ]
+        preguntas = get_preguntas(headers, url, 1)
+        print(preguntas[0])
+        url = env[
+                  "URL_SERVER"] + 'user/candidate/postulation/answer?processId=' + postulation_id + '&questionnaire=SOFT_SKILL'
+        my_body = [
+            {
+                "question": {
+                    "questionId": preguntas[0]
+                },
+                "value": True,
+                "binaryAnswer": True
+            }
+        ]
 
-    respuesta = send_post_headers(url, headers, my_body, 200)
-    print(respuesta)
+        respuesta = send_post_headers(url, headers, my_body, 200)
+        print('se envia las respuestas del habilidades blandas :)\n ', respuesta)
+        return 'Se envian las respuestas de las habilidades blandas'
+    except Exception as e:
+        print('No se envia las respuestas de las habilidades balndas :(\n', e)
+        return 'No se envia las respuestas de las habilidades balndas'
 
 
 # se manda la expectativa salarial
 def expectativa_salarial(headers, postulation_id):
     try:
+        print('Inicia la espectava salarial :)\n')
         salario_min = salary_min()
         url = env["URL_SERVER"] + 'user/candidate/postulation/salary-expectation'
         my_body = {
@@ -173,16 +182,17 @@ def expectativa_salarial(headers, postulation_id):
         }
 
         respuesta = send_post_headers(url, headers, my_body, 200)
-        print('Se manda la espectativa salarial', respuesta)
+        print('Se manda la espectativa salarial :)\n', respuesta)
         return 'Se envia la espectativa salarial correctamente'
     except Exception as e:
-        print('No se mando la espectativa salarial', e)
+        print('No se mando la espectativa salarial :(\n', e)
         return 'No se manda la espectativa salarial'
 
 
 # se manda las condiciones de contratacion
 def condiciones_de_contratacion(headers, postulation_id):
     try:
+        print('Inicia el egistro de condiciones de contratación')
         url = env["URL_SERVER"] + 'user/candidate/postulation/contract-conditions'
         my_body = {
             "selectionProcessId": postulation_id,
@@ -191,15 +201,18 @@ def condiciones_de_contratacion(headers, postulation_id):
         }
 
         respuesta = send_post_headers(url, headers, my_body, 200)
-        print('Se mandan las condicoones de contratación', respuesta)
+        print('Se mandan las condiciones de contratación :)\n', respuesta)
         return 'Se envian las condiciones de contratación, correctamente'
     except Exception as e:
-        print('No se mandan las condiciones de contratacion', e)
+        print('No se mandan las condiciones de contratacion :(\n', e)
+        return 'No se mandan las condiciones de contratacion'
 
 
 # se manda los permisos de video presentacion y video entrevista
 def seleccion_de_permisos(headers, postulation_id):
     try:
+        print('Se inicia la seccion de permisos de videos y psicometricas')
+
         url = env["URL_SERVER"] + 'user/permissions/selection-process?selectionProcessId=' + postulation_id
         my_body = [
             {
@@ -213,8 +226,8 @@ def seleccion_de_permisos(headers, postulation_id):
         ]
 
         respuesta = send_post_headers(url, headers, my_body, 200)
-        print('Se mandan los permisos de postulacion', respuesta)
+        print('Se mandan los permisos de postulacion :)\n', respuesta)
         return 'Se envian los permisos de postulación'
     except Exception as e:
-        print('No se mandan los permisos de postulacion', e)
+        print('No se mandan los permisos de postulacion :(\n', e)
         return 'No se mandan los permisos de postulación'

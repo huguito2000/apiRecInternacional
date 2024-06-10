@@ -135,7 +135,6 @@ def send_post_headers(url, headers, my_body, code_http):
         try:
             result = req.json()
             print(f"Status Code: {req.status_code}")
-            print(f"Response: {result}")
             return result
         except requests.exceptions.JSONDecodeError:
             result = req.text

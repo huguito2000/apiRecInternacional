@@ -11,7 +11,8 @@ from src.modules.recruiter.register_recruiter import register_recruiter
 fecha = obtener_fecha()
 
 
-def generar_informe_happy_path_reclu_pdf(nombre_archivo, reporte_login, reporte_cliente, reporte_canje_cupon, reporte_ajustes,
+def generar_informe_happy_path_reclu_pdf(nombre_archivo, reporte_login, reporte_cliente, reporte_canje_cupon,
+                                         reporte_ajustes,
                                          reporte_crear_vacante_manual, reporte_crear_vacante_ia):
     c = canvas.Canvas(nombre_archivo, pagesize=letter)
     c.setFont('Helvetica-Bold', 16)
@@ -47,10 +48,10 @@ def happypath_test_reclu():
         print('\n')
         reporte_crear_vacante_ia = create_vacant_ia(headers)
         print('\n')
-        nombre_archivo = "reportes/Registro HappyPath del reclutador" + fecha + ".pdf"
+        nombre_archivo = "reports/Registro HappyPath del reclutador" + fecha + ".pdf"
         print('\n')
-        generar_informe_happy_path_reclu_pdf(nombre_archivo, reporte_login, reporte_cliente, reporte_canje_cupon, reporte_ajustes,
-                                             reporte_crear_vacante_manual, reporte_crear_vacante_ia)
+        generar_informe_happy_path_reclu_pdf(nombre_archivo, reporte_login, reporte_cliente, reporte_canje_cupon,
+                                             reporte_ajustes, reporte_crear_vacante_manual, reporte_crear_vacante_ia)
         print('Se genera el reporte con los resultados del Happy Path')
         return 'Se hizo correctamente el happy path'
     except Exception as e:

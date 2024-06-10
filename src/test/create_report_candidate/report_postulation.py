@@ -1,16 +1,17 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+
 from src.modules.Candidate.loginCand import login_cand
 from src.modules.Candidate.registro_de_candidato_full_CV import register_complete_full_cv
 from src.objectRepository.candidate.postulacion.step_postulacion import postulacion, exp_laboral_cuestionario, \
-    habilidad_profesional, expectativa_salarial, condiciones_de_contratacion, seleccion_de_permisos, habilidad_blandas
+    habilidad_profesional, habilidad_blandas, expectativa_salarial, condiciones_de_contratacion, seleccion_de_permisos
 from src.services.catalogs import obtener_fecha
 
 fecha = obtener_fecha()
 print(fecha)
 
 
-def generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_registro_cand, reporte_postulacion,
+def generar_informe_happy_path_candidate_pdf(nombre_archivo,  reporte_registro_cand, reporte_postulacion,
                                              reporte_exp_laboral_cuestionario, reporte_habilidad_profesional,
                                              reporte_habilidad_blanda, reporte_expectativa_salarial,
                                              reporte_condiciones_de_contratacion, reporte_seleccion_de_permisos):
@@ -35,7 +36,6 @@ def generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_registro_ca
 
 def postulacion_test_candidate(enviroment):
     try:
-        print('\n')
         reporte_registro_cand, correo = register_complete_full_cv(enviroment)
         print(correo)
         _, headers, _ = login_cand(correo)
@@ -53,15 +53,13 @@ def postulacion_test_candidate(enviroment):
         reporte_condiciones_de_contratacion = condiciones_de_contratacion(headers, postulation_id)
         print('\n')
         reporte_seleccion_de_permisos = seleccion_de_permisos(headers, postulation_id)
-        nombre_archivo = "reports/Postulacion del candidato " + fecha + ".pdf"
-        print('\n')
-        generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_registro_cand,
-                                                 reporte_postulacion, reporte_exp_laboral_cuestionario,
-                                                 reporte_habilidad_profesional, reporte_habilidad_blanda,
-                                                 reporte_expectativa_salarial,
+        nombre_archivo = "reports/postulacion del candidato  " + fecha + ".pdf"
+        generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_registro_cand, reporte_postulacion,
+                                                 reporte_exp_laboral_cuestionario, reporte_habilidad_profesional,
+                                                 reporte_habilidad_blanda, reporte_expectativa_salarial,
                                                  reporte_condiciones_de_contratacion, reporte_seleccion_de_permisos)
-        print('Se genera el reporte con los resultados de la postulación del candidato')
+        print('\nSe genera el reporte con los resultados de la postulación del candidato :)')
         return 'Se genera el reporte con los resultados de la postulación del candidato'
     except Exception as e:
-        print('No se genera el reporte con los resultados de la postulación del candidato', e)
+        print('\nNo se genera el reporte con los resultados de la postulación del candidato :(', e)
         return 'No se genera el reporte con los resultados de la postulación del candidato'

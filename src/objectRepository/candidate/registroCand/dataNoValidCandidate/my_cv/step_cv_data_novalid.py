@@ -7,7 +7,7 @@ from src.services.peticiones_HTTP import base, send_post_headers, send_put_body
 
 env = (dotenv_values("etc/.env"))
 
-name, last_name, _, birth_date, correo = data_user(env)
+name, last_name, _, birth_date, email_candidate = data_user(env)
 
 data_exp_word = [
     {

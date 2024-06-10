@@ -9,6 +9,7 @@ env = dotenv_values("etc/.env")
 
 
 def generate_combinations():
+    print('Se generan las combianaciones de las notificaciones')
     permission_types = [
         "NOTIFICATION_PROCESS",
         "REMINDER",
@@ -29,30 +30,33 @@ def generate_combinations():
                 "permissionType": permission_type
             })
         bodys.append(body)
-
     return bodys
+
 
 def permisos_invalido_cand(headers, myBody):
     try:
+        print('Se inicio el envio de los permisos \n')
         url = env["URL_SERVER"] + 'user/permissions/register-list'
         send_post_headers(url, headers, myBody, 200)
-        print('Se manda la peticion para el envio de los permisos')
+        print('\n')
         return 'Se manda la peticion para el envio de los permisos'
     except Exception as e:
-        print('No se manda la peticion para el envio de los permisos', e)
+        print('No se manda la peticion para el envio de los permisos :( \n', e)
         return 'No se manda la peticion para el envio de los permisos'
 
 
 def step_send_all_combinations_legals(headers):
     try:
-        print('\nSe mandan las combinaciones del los permisos')
+        print('Se mandan las combinaciones del los permisos \n')
         bodies = generate_combinations()
         for body in bodies:
             permisos_invalido_cand(headers, body)
+            #print(f"  - Se envió los permisos: {bodies} \n")
         step_permission_candidate(headers)
-        return 'se manda todas la combianciones posibles de los permisos de notificaciones'
+        print('se manda todas la combianciones posibles de los permisos de las notificaciones :) \n')
+        return 'se manda todas la combianciones posibles de los permisos de  las notificaciones'
     except Exception as e:
-        print('no se mandaron a los permisos', e)
+        print('no se mandaron a los permisos :( \n', e)
         return 'No se mandaron los permisos de notificaiones'
 
 

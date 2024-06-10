@@ -10,6 +10,7 @@ env = dotenv_values("etc/.env")
 
 def position_title(headers):
     try:
+        print('Inicia la creacion de la vacante')
         client_id = get_client(headers)
 
         puesto = position()
@@ -207,8 +208,8 @@ def position_title(headers):
         resultado = send_post_headers(url, headers, my_body, 200)
         print(resultado)
         vacant_id = resultado['vacantId']
-        print('\n Se crea el primer paso de la vacante')
+        print('Se crea el primer paso de la vacante :) \n')
         return 'Se crea el primer paso', vacant_id
     except Exception as e:
-        print('No se crea el primer paso', e)
+        print('No se crea el primer paso :(\n', e)
         return 'No se crea el primer paso'

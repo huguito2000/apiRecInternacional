@@ -19,6 +19,7 @@ data_payloads = [
 
 
 def step_phone_invalid_candidate(headers):
+    print('Se inicia el envio de telefonos invalidos')
     global code
     try:
         print('Enviado numeros de telefono ...')
@@ -29,9 +30,10 @@ def step_phone_invalid_candidate(headers):
             print(f"  - Se envió el telefono: {nums_variation}")
         print('el codigo del numero es: ' + str(code))
         code = step_phone_candidate(headers)
+        print('Se manda la sección de numeros de telefono icorrectos :) \n')
         return 'Se manda la sección de numeros de telefono icorrectos', code
     except Exception as e:
-        print('No se obtuvo el codigo', e)
+        print('No se obtuvo el codigo :( \n', e)
 
 
 data_codes = [
@@ -45,6 +47,7 @@ data_codes = [
 
 
 def step_verify_code_invalido_cand(headers):
+    print('Inicia la verificacion del codigo')
     global respuesta
     try:
         print('Enviado los codigos ...')
@@ -55,7 +58,7 @@ def step_verify_code_invalido_cand(headers):
             respuesta = send_post_headers_sin_body(full_url, headers, 412)
             print(f"  - Se envió el codigo: {codes_variation}")
         step_verify_code_cand(headers)
-        print(respuesta)
+        print('Se valida la seccion de verificar el codigo con datos incorrectos :)\n', respuesta)
         return 'Se valida la seccion de verificar el codigo con datos incorrectos'
     except Exception as e:
         print(f'No se verifico el codigo {e}')

@@ -7,21 +7,23 @@ env = dotenv_values("etc/.env")
 
 def contract_conditions(vacant_id, headers):
     try:
+        print('Inicia las condidicones de contratación')
         url = env["URL_SERVER"] + 'vacancy/management/step7/' + vacant_id
         print(url)
         my_body = {
             "contractConditions": "* tener visa\n* tener una cuenta bancaria internacional\n* tener lugar de residencia"
         }
         send_post_headers(url, headers, my_body, 200)
-        print('\nse envia la sección de condiciones de contratación')
+        print('se envia la sección de condiciones de contratación :)\n')
         return 'Se envia la condiciones de contratacion correctamente'
     except Exception as e:
-        print('No se mandan las condciones de contracion', e)
+        print('No se mandan las condciones de contracion :( \n', e)
         return 'No se mandan las condciones de contratacion'
 
 
 def job_skills(vacant_id, headers):
     try:
+        print('Se inicia las habilidades del trabajo')
         url = env["URL_SERVER"] + 'vacancy/management/step3/' + vacant_id
         print(url)
         my_body = {
@@ -78,10 +80,10 @@ def job_skills(vacant_id, headers):
 
         send_patch(url, headers, my_patch, 200)
 
-        print('\n Se mandas las habilidades del trabajo')
+        print('Se mandas las habilidades del trabajo :) \n')
         return 'Se mandas las habilidades necesarias para el trabajo'
     except Exception as e:
-        print('No se mando las habilidade del trabajo', e)
+        print('No se mando las habilidade del trabajo :( \n', e)
         return 'No se mandaron las habilidades del trabajo'
 
 

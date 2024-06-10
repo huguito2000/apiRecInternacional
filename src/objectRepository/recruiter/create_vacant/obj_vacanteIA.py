@@ -204,7 +204,7 @@ def vacante_ia(headers):
 def post_vacancy_ia(headers):
     try:
         _, vacant_id = vacante_ia(headers)
-        url = env["URL_SERVER"] + 'vacancy/management/actived?vacantId=' + vacant_id +'&approved=false'
+        url = env["URL_SERVER"] + 'vacancy/management/actived?vacantId=' + vacant_id + '&approved=false'
         code = send_put(url, headers, 200)
         assert code == 200
         print('Se publico la vacante con IA')
