@@ -1,16 +1,17 @@
 from dotenv import dotenv_values
-from src.services.peticiones_HTTP import base, send_post
+from src.services.peticiones_HTTP import send_post
 
 env = dotenv_values("etc/.env")
 email_candidate = env["EMAIL_CANDIDATE_HAPPY_PATH"]
+pass_email = env["PASS_EMAIL_RECRUITER_HAPPY_PATH"]
 
 
-def step_login_candidate(email_candidate):
+def step_login_candidate(email_candidate, pass_email):
     try:
         print('Se inicia sesion con el candidato', email_candidate)
         my_body = {
             "email": email_candidate,
-            "password": "Abcd.1234",
+            "password": pass_email,
         }
         url = env["URL_SERVER"] + 'auth/login'
         resultado, headers = send_post(url, my_body, 200)

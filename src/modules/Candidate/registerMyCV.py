@@ -1,3 +1,4 @@
+from src.modules.Candidate.loginCand import pass_email
 from src.objectRepository.candidate.obj_loginCand import step_login_candidate
 from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull import work_experience, education, \
     area_experience, hard_skills, course, certificate, soft_skills, language, upload_cv, upload_photo
@@ -6,7 +7,7 @@ from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull 
 def register_cv(email_candidate):
     try:
         print('\ninicia el registro del cv del candidato', email_candidate)
-        _, _, headers = step_login_candidate(email_candidate)
+        _, _, headers = step_login_candidate(email_candidate, pass_email)
 
         work_experience(headers)
 

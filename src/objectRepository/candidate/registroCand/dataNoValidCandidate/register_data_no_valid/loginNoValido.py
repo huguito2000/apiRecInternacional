@@ -1,5 +1,6 @@
 from dotenv import dotenv_values
 
+from src.modules.Candidate.loginCand import pass_email
 from src.objectRepository.candidate.obj_loginCand import step_login_candidate
 from src.services.peticiones_HTTP import base, send_post, send_post_headers_sin_body
 
@@ -68,7 +69,7 @@ def login_no_valido_cand():
 
 def login_cand_bloqueado():
     try:
-        _, _, headers = step_login_candidate(email_candidate)
+        _, _, headers = step_login_candidate(email_candidate, pass_email)
         print('Se hace login para validar que es un usuario activo y obtener los header')
         my_body_no_valido = {
                 "email": email_candidate,

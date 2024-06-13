@@ -1,7 +1,8 @@
+from dotenv import dotenv_values
 from src.services.peticiones_HTTP import send_get_headers
 
-url_base = ('https://searchvacant.stage.ia.involverh.es/search-vacancy/search-vacancies/?offset=0&limit=10&countryId'
-            '=2c9f936481969f0aaaa996a00e090002&')
+env = dotenv_values("etc/.env")
+url_base = env["URL_BUSCADOR"]
 
 
 def step_search_position(headers):

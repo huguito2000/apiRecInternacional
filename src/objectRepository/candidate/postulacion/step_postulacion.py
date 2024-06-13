@@ -231,3 +231,7 @@ def seleccion_de_permisos(headers, postulation_id):
     except Exception as e:
         print('No se mandan los permisos de postulacion :(\n', e)
         return 'No se mandan los permisos de postulación'
+
+
+def change_permission_postulation():
+    print('hola')

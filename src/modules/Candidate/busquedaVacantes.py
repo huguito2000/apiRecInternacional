@@ -1,13 +1,12 @@
-from src.modules.Candidate.loginCand import login_cand, correo
+from src.modules.Candidate.loginCand import login_cand, pass_email, email_candidate
 from src.objectRepository.candidate.busqueda.busquedaDeVacantes import step_search_position, \
     step_search_salary, \
     step_search_workday, step_search_modality, step_search_type_contract, step_search_type_company, step_search_time
-from src.objectRepository.candidate.obj_loginCand import email_candidate
 
 
 def search_vacancy():
     try:
-        _, headers, _ = login_cand(email_candidate)
+        _, headers, _ = login_cand(email_candidate, pass_email)
         step_search_position(headers)
         step_search_salary(headers)
         step_search_workday(headers)

@@ -1,9 +1,7 @@
-import random
-from datetime import datetime
 from dotenv import dotenv_values
 from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate
 from src.services.catalogs import data_user
-from src.services.peticiones_HTTP import base, send_post
+from src.services.peticiones_HTTP import send_post
 env = dotenv_values("etc/.env")
 
 name, last_name, second_last_name, birth_date, email_candidate = data_user(env)

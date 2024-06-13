@@ -6,7 +6,9 @@ import random
 from json import loads
 from dotenv import dotenv_values
 
-env = dotenv_values("etc/.env")
+from src.services.peticiones_HTTP import send_get_headers, send_get
+
+env = dotenv_values("/etc/.env")
 
 
 def nombres():
@@ -167,13 +169,53 @@ def get_password(name, last_name, second_last_name, birth_date: date):
 def get_ramdom_nationality():
     response = requests.get(env["URL_SERVER"] + "management/catalog/nationality")
     json_dict = loads(response.text)
-    nationality = json_dict[random.randint(0, len(json_dict)-1)]
+    nationality = json_dict[random.randint(0, len(json_dict) - 1)]
     return nationality
 
 
+def get_states():
+    paises = ['ES', 'CO', 'MX']
+    pais = random.choice(paises)
+    print(pais)
+    url = env["URL_SERVER"] + 'management/catalog/state?countryCode=' + pais
+    print(url)
+    respuesta = requests.get(url)
+    json_dict = loads(respuesta.text)
+    num = random.randrange(len(json_dict))
+    iso2 = json_dict[num]["iso2"]
+    # Print the result
+    print(iso2)
+    return pais, iso2
+
+
 def get_ramdom_city():
-    response = requests.get(env["URL_SERVER"] + "management/catalog/city?countryCode=MX&stateCode=MX-AGU")
+    pais, iso2 = get_states()
+    response = requests.get(env["URL_SERVER"] + "management/catalog/city?countryCode=" + pais +"&stateCode=" + iso2)
     json_dict = loads(response.text)
-    city = json_dict[random.randint(0, len(json_dict)-1)]
+    num = random.randrange(len(json_dict))
+    print(num)
+    city = json_dict[random.randint(0, len(json_dict) - 1)]
     return city
+
+
+def get_area_catalogs(headers):
+    url = env["URL_SERVER"] + "management/catalog/area"
+    response: list = send_get_headers(url, headers, 200)
+    try:
+        num = random.randint(0, 10)
+        area = response[num]['areaId']
+        print('se optiene el area id:\n', area)
+        return area
+    except (json.JSONDecodeError, KeyError) as e:
+        print(f'Error al obtener areaIds :( \n: {e}')
+
+
+def get_nacionality():
+    url = env["URL_SERVER"] + "management/catalog/nationality"
+    response: list = send_get(url, 200)
+    num = random.randint(0, 100)
+    nationality_id = response[num]['nationalityId']
+    return nationality_id
+
+
 

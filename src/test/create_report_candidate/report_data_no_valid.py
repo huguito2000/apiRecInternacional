@@ -1,3 +1,4 @@
+from dotenv import dotenv_values
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
@@ -45,9 +46,10 @@ def generar_informe_con_datos_no_validos_pdf(nombre_archivo, reporte_login_no_va
     c.save()
 
 
-def data_no_valid_candidate(enviroment):
+def data_no_valid_candidate():
     try:
-        name, last_name, _, birth_date, _ = data_user(enviroment)
+        env = dotenv_values("etc/.env")
+        name, last_name, _, birth_date, _ = data_user(env)
         reporte_login_no_valido_cand = login_no_valido_cand()
 
         print('\nPruebas de un candidato bloqueadon y desbloqueado')

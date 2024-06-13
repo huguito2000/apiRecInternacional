@@ -10,3 +10,15 @@ requests==2.31.0
 self==2020.12.3
 tk==0.1.0
 urllib3==2.2.1
+altgraph==0.17.4
+cx_Freeze==7.1.0.post0
+macholib==1.16.3
+packaging==24.1
+pyinstaller==6.8.0
+pyinstaller-hooks-contrib==2024.7
+python-dotenv==1.0.1
+setuptools==70.0.0
+wheel==0.43.0
+altgraph==0.17.4
+pillow==10.3.0
+setuptools==70.0.0

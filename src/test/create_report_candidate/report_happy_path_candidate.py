@@ -2,7 +2,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 from src.modules.Candidate.busquedaVacantes import search_vacancy
-from src.modules.Candidate.loginCand import login_cand
+from src.modules.Candidate.loginCand import login_cand, pass_email
 from src.modules.Candidate.postulacion import postulacion_candidato
 from src.modules.Candidate.registerOnboading import register_onboarding_candidate
 from src.modules.Candidate.registro_de_candidato_full_CV import register_complete_full_cv
@@ -34,13 +34,13 @@ def generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_register_on
     c.save()
 
 
-def happypath_test_candidate(enviroment):
+def happypath_test_candidate():
     try:
         nombre_archivo = "reports/Registro HappyPath candidato " + fecha + ".pdf"
         print('\nInicia el registro del onboarding del usuario candidato')
-        reporte_register_onboarding_candidate, _ = register_onboarding_candidate(enviroment)
+        reporte_register_onboarding_candidate, _ = register_onboarding_candidate()
         print('\nInicia el registro del candidato con CV completo ')
-        reporte_register_full_cv, email_candidate = register_complete_full_cv(enviroment)
+        reporte_register_full_cv, email_candidate = register_complete_full_cv()
         print('\nSe hace login de reclutador para creacion de una vacante')
         _, headers, recruiter_id = login_recruiter(email)
         print('\nInicia el proceso de la creacion de la vacante manual')
@@ -48,9 +48,9 @@ def happypath_test_candidate(enviroment):
         print('\nSe postula a la vacante')
         reporte_postulacion = postulacion_candidato(email_candidate)
         print('\nSe inicia las pruebas de datos invalidos')
-        reporte_test_datos_no_validos = candidate_data_invalid(enviroment)
+        reporte_test_datos_no_validos = candidate_data_invalid()
         print('\nSe hace el login del candidato')
-        reporte_login_candidato, _, _ = login_cand(email_candidate)
+        reporte_login_candidato, _, _ = login_cand(email_candidate, pass_email)
         print('\nSe inicia las pruebas de buscador de vacantes')
         reporte_buscador = search_vacancy()
         generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_register_onboarding_candidate,

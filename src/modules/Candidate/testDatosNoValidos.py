@@ -1,3 +1,5 @@
+from dotenv import dotenv_values
+
 from src.services.catalogs import data_user
 from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.createPassInvalido import \
     create_pass_invalido_cand
@@ -12,10 +14,12 @@ from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_d
 from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.telefonoNoValido import \
     step_phone_invalid_candidate, step_verify_code_invalido_cand
 
+env = dotenv_values("etc/.env")
 
-def candidate_data_invalid(enviroment):
+
+def candidate_data_invalid():
     try:
-        name, last_name, _, birth_date, _ = data_user(enviroment)
+        name, last_name, _, birth_date, _ = data_user(env)
 
         login_no_valido_cand()
 

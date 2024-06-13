@@ -1,4 +1,4 @@
-from src.modules.Candidate.loginCand import login_cand
+from src.modules.Candidate.loginCand import login_cand, pass_email
 from src.objectRepository.candidate.postulacion.step_postulacion import postulacion, \
     exp_laboral_cuestionario, habilidad_profesional, expectativa_salarial, condiciones_de_contratacion, \
     seleccion_de_permisos
@@ -6,7 +6,7 @@ from src.objectRepository.candidate.postulacion.step_postulacion import postulac
 
 def postulacion_candidato(email_candidate):
     try:
-        _, headers, _ = login_cand(email_candidate)
+        _, headers, _ = login_cand(email_candidate, pass_email)
 
         _, postulationID = postulacion(headers)
 

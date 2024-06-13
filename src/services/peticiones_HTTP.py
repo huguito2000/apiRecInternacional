@@ -88,11 +88,10 @@ def send_put(url, headers, code_http):
 def send_put_body(url, headers, my_body, code_http):
     try:
         req = requests.put(url, headers=headers, json=my_body)
-        print(req.content)
         print('PUT status: ' + str(req.status_code))
         assert req.status_code == code_http
     except Exception as e:
-        print('no paso la funcion put', {e})
+        print('no paso la funcion put', e)
 
 
 def send_post_sin_body(url, code_http):
@@ -130,7 +129,7 @@ def send_post_headers(url, headers, my_body, code_http):
         req = requests.post(url, headers=headers, json=my_body)
         # Check the response status code
         if req.status_code != code_http:
-            raise Exception(f"Unexpected status code: {req.status_code}")
+            raise Exception(f"error de codigo: {req.status_code}")
         # Try to decode the JSON response
         try:
             result = req.json()
@@ -150,10 +149,22 @@ def send_delete(url, headers, my_body, code_http):
     try:
         req = requests.delete(url, headers=headers, json=my_body)
         print('Patch status: ' + str(req.status_code))
-        print(req.json())
+        if req.json() == None:
+            print('La respuesta esta vacia pero el codigo es: ', str(req.status_code))
+            resultado = req.json()
+            return resultado
+        else:
+            print(req.json())
         assert req.status_code == code_http
-        resultado = req.json()
-        return resultado
     except Exception as e:
-        print('No paso el delete', {e})
+        print('No paso el delete', e)
+
+
+def send_delete_sin_body(url, headers, code_http):
+    try:
+        req = requests.delete(url, headers=headers)
+        print('Patch status: ' + str(req.status_code))
+        assert req.status_code == code_http
+    except Exception as e:
+        print('No paso el delete', e)
 

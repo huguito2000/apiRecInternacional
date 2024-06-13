@@ -1,7 +1,7 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
-from src.modules.Candidate.loginCand import login_cand
+from src.modules.Candidate.loginCand import login_cand, pass_email
 from src.modules.Candidate.registro_de_candidato_full_CV import register_complete_full_cv
 from src.objectRepository.candidate.postulacion.step_postulacion import postulacion, exp_laboral_cuestionario, \
     habilidad_profesional, habilidad_blandas, expectativa_salarial, condiciones_de_contratacion, seleccion_de_permisos
@@ -34,11 +34,11 @@ def generar_informe_happy_path_candidate_pdf(nombre_archivo,  reporte_registro_c
     c.save()
 
 
-def postulacion_test_candidate(enviroment):
+def postulacion_test_candidate():
     try:
-        reporte_registro_cand, correo = register_complete_full_cv(enviroment)
+        reporte_registro_cand, correo = register_complete_full_cv()
         print(correo)
-        _, headers, _ = login_cand(correo)
+        _, headers, _ = login_cand(correo, pass_email)
         print('\n')
         reporte_postulacion, postulation_id = postulacion(headers)
         print('\n')

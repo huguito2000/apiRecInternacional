@@ -1,12 +1,16 @@
+from dotenv import dotenv_values
+
 from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate, \
     step_create_pass_candidate, step_permission_candidate, step_phone_candidate, step_resend_code, \
     step_verify_code_cand, step_names_candidate
 from src.services.catalogs import data_user
 
+env = dotenv_values("etc/.env")
 
-def register_onboarding_candidate(enviroment):
+
+def register_onboarding_candidate():
     try:
-        name, last_name, _, birth_date, _ = data_user(enviroment)
+        name, last_name, _, birth_date, _ = data_user(env)
 
         headers, email_candidate = step_register_candidate()
 
