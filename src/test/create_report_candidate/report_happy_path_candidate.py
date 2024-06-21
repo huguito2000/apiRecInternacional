@@ -1,6 +1,5 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
 from src.modules.Candidate.busquedaVacantes import search_vacancy
 from src.modules.Candidate.loginCand import login_cand, pass_email
 from src.modules.Candidate.postulacion import postulacion_candidato
@@ -12,6 +11,7 @@ from src.modules.recruiter.login_recruiter import login_recruiter, email
 from src.services.catalogs import obtener_fecha
 
 fecha = obtener_fecha()
+
 
 def generar_informe_happy_path_candidate_pdf(nombre_archivo, reporte_register_onboarding_candidate,
                                              reporte_register_full_cv, reporte_postulacion,
@@ -38,7 +38,7 @@ def happypath_test_candidate():
     try:
         nombre_archivo = "reports/Registro HappyPath candidato " + fecha + ".pdf"
         print('\nInicia el registro del onboarding del usuario candidato')
-        reporte_register_onboarding_candidate, _ = register_onboarding_candidate()
+        reporte_register_onboarding_candidate, _, _ = register_onboarding_candidate()
         print('\nInicia el registro del candidato con CV completo ')
         reporte_register_full_cv, email_candidate = register_complete_full_cv()
         print('\nSe hace login de reclutador para creacion de una vacante')
@@ -46,7 +46,7 @@ def happypath_test_candidate():
         print('\nInicia el proceso de la creacion de la vacante manual')
         create_manual_vacant(headers, recruiter_id)
         print('\nSe postula a la vacante')
-        reporte_postulacion = postulacion_candidato(email_candidate)
+        reporte_postulacion, _, _ = postulacion_candidato(email_candidate)
         print('\nSe inicia las pruebas de datos invalidos')
         reporte_test_datos_no_validos = candidate_data_invalid()
         print('\nSe hace el login del candidato')

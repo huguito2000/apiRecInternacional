@@ -1,8 +1,7 @@
-from dotenv import dotenv_values
 from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate
-from src.services.catalogs import data_user
+from src.services.catalogs import data_user, env
 from src.services.peticiones_HTTP import send_post
-env = dotenv_values("etc/.env")
+
 
 name, last_name, second_last_name, birth_date, email_candidate = data_user(env)
 
@@ -71,25 +70,43 @@ def register400_candidate(data, code):
     try:
         url = env["URL_SERVER"] + 'auth/registry/candidate'
         resultado = send_post(url, data, (400, 423))
-        print(f"Resultado con datos: {data}, código: {code}")
-        print('Se hicieron las pruebas de registro con datos no validos', resultado)
-        return 'Se hicieron las pruebas de registro invalido'
+        if resultado != 0:
+            print(f"Resultado con datos: {data}, código: {code}")
+            print('Se hicieron las pruebas de registro con datos no validos\n', resultado)
+            return 'Se hicieron las pruebas de registro invalido', 1
+        else:
+            print('No pasaron las pruebas de registro\n')
+            return 'No pasaron las pruebas registro con datos incorrectos para el candidato', 0
     except Exception as e:
-        print('No pasaron las pruebas de registro', e)
-        return 'No pasaron las pruebas registro con datos incorrectos para el candidato'
+        print('No pasaron las pruebas de registro\n ', e)
+        return 'No pasaron las pruebas registro con datos incorrectos para el candidato', 0
 
 
 def register_invalid_candidate():
     try:
+        print('Inicia el registro invalido')
+        results = []
         for data in data_payloads:
-            register400_candidate(data.copy(), 400 if data["email"] else 409)
+            _, result = register400_candidate(data.copy(), 400 if data["email"] else 409)
+            results.append(result)
             print('\n')
-        headers, email_candidate = step_register_candidate()
-        print('Se hicieron las pruebas de registro para un usuario candidato con datos incorrectos')
-        return 'Se hicieron las pruebas de registro para un usuario candidato con datos incorrectos', headers, email_candidate
+        print('Los resultados son:', results)
+        casos = len(results)
+        exito = sum(results)
+        fallo = casos - exito
+        print('pasaron:', exito)
+        print('fallaron:', fallo)
+        if exito == casos:
+            headers, email_candidate, _ = step_register_candidate()
+            print('Se hicieron las pruebas de registro para un usuario candidato con datos incorrectos')
+            return 'Se hicieron las pruebas de registro para un usuario candidato con datos incorrectos', headers, email_candidate, 1
+        else:
+            headers, email_candidate, _ = step_register_candidate()
+            print('No pasaron las pruebas de registro')
+            return 'No pasaron las pruebas de registro con datos incorrectos', headers, email_candidate, 0
     except Exception as e:
         print('No pasaron las pruebas de registro', e)
-        return 'No pasaron las pruebas de registro con datos incorrectos'
+        return 'No pasaron las pruebas de registro con datos incorrectos', None, None, 0
 
 
 

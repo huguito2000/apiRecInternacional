@@ -1,12 +1,8 @@
 import random
 import json
-from dotenv import dotenv_values
-
-from src.services.catalogs import data_user
+from src.services.catalogs import data_user, env
 from src.services.peticiones_HTTP import base, send_post, send_put, send_post_headers, send_post_headers_sin_body, \
     send_get_headers, send_get
-
-env = dotenv_values("etc/.env")
 
 
 def get_area(headers):
@@ -22,18 +18,21 @@ def get_area(headers):
 
 
 def get_nacionality():
-    url = env["URL_SERVER"] + "management/catalog/nationality"
-    response: list = send_get(url, 200)
-    num = random.randint(0, 100)
-    nationality_id = response[num]['nationalityId']
-    return nationality_id
+    try:
+        url = env["URL_SERVER"] + "management/catalog/nationality"
+        response: list = send_get(url, 200)
+        num = random.randint(0, 100)
+        nationality_id = response[num]['nationalityId']
+        return nationality_id
+    except Exception as e:
+        print('No se obtuvo la nacionalidad', e)
+        return 'No se obtuvo la nacionalidad'
 
 
 def step_register_candidate():
     try:
         print('\nInicia el proceso de registro del candidato')
         _, _, _, _, email_candidate = data_user(env)
-
         nationality_id = get_nacionality()
         my_body = {
             "email": email_candidate,
@@ -44,16 +43,21 @@ def step_register_candidate():
         }
 
         url = env["URL_SERVER"] + 'auth/registry/candidate'
-        _, headers = send_post(url, my_body, 201)
-        headers = headers['token']
-        token = headers.replace('Bearer ', '')
-        headers = {
-            'Authorization': f'Bearer {token}'
-        }
-        return headers, email_candidate
+        resultado, headers = send_post(url, my_body, 201)
+        if resultado != 0:
+            headers = headers['token']
+            token = headers.replace('Bearer ', '')
+            headers = {
+                'Authorization': f'Bearer {token}'
+            }
+            print('primer paso del registro exitoso')
+            return headers, email_candidate, 1
+        else:
+            print('No paso el registro :(\n')
+            return 'No paso el registro del candidato', None, 0
     except Exception as e:
         print('No paso el registro :(', e)
-        return 'No paso el registro del candidato'
+        return 'No paso el registro del candidato', None, 0
 
 
 def step_create_pass_candidate(headers):
@@ -61,12 +65,16 @@ def step_create_pass_candidate(headers):
         print("\nse manda la contraseña...")
         password = 'Abcd.1234'
         url = env["URL_SERVER"] + 'auth/create-pass?password=' + password
-        send_put(url, headers, 200)
-        print('paso la creacion de la contraseña :)\n')
-        return 'paso la creacion de la contraseña'
+        resultado = send_put(url, headers, 200)
+        if resultado != 0:
+            print('paso la creacion de la contraseña :)\n')
+            return 'paso la creacion de la contraseña', 1
+        else:
+            print('No paso la creacion de la contraseña :(\n')
+            return 'No paso la creación de la contraseña para el candidato', 0
     except Exception as e:
         print('No paso la creacion de la contraseña :(', e)
-        return 'No paso la creación de la contraseña para el candidato'
+        return 'No paso la creación de la contraseña para el candidato', 0
 
 
 def step_permission_candidate(headers):
@@ -99,28 +107,36 @@ def step_permission_candidate(headers):
             }
         ]
         url = env["URL_SERVER"] + 'user/permissions/register-list'
-        send_post_headers(url, headers, my_body, 200)
-        print('pasaron los permisos de notificaciones :)\n')
-        return 'pasaron los permisos de notificaciones de candidato'
+        resultado = send_post_headers(url, headers, my_body, 200)
+        if resultado != 0:
+            print('pasaron los permisos de notificaciones :)\n')
+            return 'pasaron los permisos de notificaciones de candidato', 1
+        else:
+            print('No pasaron los permisos :(\n')
+            return 'No pasaron los permisos del candidato', 0
     except Exception as e:
         print('No pasaron los permisos :(\n', e)
-        return 'No pasaron los permisos del candidato'
+        return 'No pasaron los permisos del candidato', 0
 
 
 def step_phone_candidate(headers):
     try:
-        print('Inicia el registro del numero de teléfono')
+        print('Inicia el registro del numero de teléfono valido')
         url = env["URL_SERVER"] + 'auth/send-sms?phone=999999990&phoneCode=%2B34'
         code = send_post_headers_sin_body(url, headers, 200)
-        print('el codigo del numero es: ' + str(code))
-        if code['message'] == "SMS enviado exitosamente.":
-            code = '110901'
-            print('se actualizo el Codigo actualizado a', code)
-        print('Se mando el numero de teléfono y se optubo el codigo :)\n')
-        return code
+        if code != 0:
+            print('el codigo del numero es: ' + str(code), '\n')
+            if code['message'] == "SMS enviado exitosamente.":
+                code = '110901'
+                print('Se actualizo el codigo actualizado a', code)
+            print('Se mando el número de teléfono y se obtuvo el codigo :)\n')
+            return code, 1
+        else:
+            print('No se obtuvo el codigo :(\n')
+            return 'No se obtuvo el codigo del telefono del candidato', 0
     except Exception as e:
         print('No se obtuvo el codigo :(\n', e)
-        return 'No se obtuvo el codigo del telefono del candidato'
+        return 'No se obtuvo el codigo del telefono del candidato', 0
 
 
 def step_resend_code(headers):
@@ -128,12 +144,15 @@ def step_resend_code(headers):
         print('Se inicia el reenvio del codígo')
         url = env["URL_SERVER"] + 'auth/resend-sms?phone=999999990'
         code = send_post_headers_sin_body(url, headers, 200)
-        assert code == 200
-        print('volver a Enviar ' + str(code))
-        return 'Se envio el codigo correctamente'
+        if code != 0:
+            print('volver a Enviar ' + str(code))
+            return 'Se envio el codigo correctamente', 1
+        else:
+            print('No se reenvio el codigo :(\n')
+            return 'No se puedo volver a enviar el codigo correctamente', 0
     except Exception as e:
         print('No se reenvio el codigo :(\n', e)
-        return 'No se puedo volver a enviar el codigo correctamente'
+        return 'No se puedo volver a enviar el codigo correctamente', 0
 
 
 def step_verify_code_cand(headers):
@@ -141,9 +160,15 @@ def step_verify_code_cand(headers):
         print('Inicia la verificación del codigo obtenido')
         url = base + 'auth/verify-code-sms?code=110901&phone=999999990&phoneCode=%2B52'
         respuesta = send_post_headers_sin_body(url, headers, 200)
-        print('Se verifico el codigo correctaente :)\n', respuesta)
+        if respuesta != 0:
+            print('Se verifico el codigo correctamente :)\n')
+            return 'Se verifico el codigo correctamente', 1
+        else:
+            print('No se verifico el codigo :(\n')
+            return 'No se verifico el codigo :(\n', 0
     except Exception as e:
         print('No se verifico el codigo :(\n', e)
+        return 'No se verifico el codigo :(\n', 0
 
 """
 solo en caso de mexico
@@ -172,8 +197,14 @@ def step_names_candidate(headers, name, last_name, birth_date):
             "cityId": "2c9f936481969f0cccc996a00e092521"
         }
         url = env["URL_SERVER"] + 'auth/registry/candidate/complete'
-        send_post_headers(url, headers, my_body, 200)
-        print(' se en envia el formulario de nombre del candidato :)\n')
+        resultado = send_post_headers(url, headers, my_body, 200)
+        if resultado != 0:
+            print('Se envia el formulario de nombres del candidato :)\n')
+            return 'Se envia el formulario de nombres del candidato :)', 1
+        else:
+            print('No se envio el nombre del candidato :(\n')
+            return 'No se envio el nombre del candidato :(\n', 0
     except Exception as e:
         print('No se envio el nombre del candidato :(\n', e)
+        return 'No se envio el nombre del candidato :(\n', 0
 

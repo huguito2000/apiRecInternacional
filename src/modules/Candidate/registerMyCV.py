@@ -1,5 +1,4 @@
-from src.modules.Candidate.loginCand import pass_email
-from src.objectRepository.candidate.obj_loginCand import step_login_candidate
+from src.modules.Candidate.loginCand import pass_email, login_cand
 from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull import work_experience, education, \
     area_experience, hard_skills, course, certificate, soft_skills, language, upload_cv, upload_photo
 
@@ -7,30 +6,52 @@ from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull 
 def register_cv(email_candidate):
     try:
         print('\ninicia el registro del cv del candidato', email_candidate)
-        _, _, headers = step_login_candidate(email_candidate, pass_email)
+        _, headers, _, total, _ = login_cand(email_candidate, pass_email)
 
-        work_experience(headers)
+        steps = [
+            ("work_experience", work_experience),
 
-        education(headers)
+            ("education", education),
 
-        area_experience(headers)
+            ("area_experience", area_experience),
 
-        hard_skills(headers)
+            ("hard_skills", hard_skills),
 
-        course(headers)
+            ("course", course),
 
-        certificate(headers)
+            ("certificate", certificate),
 
-        soft_skills(headers)
+            ("soft_skills", soft_skills),
 
-        language(headers)
+            ("language", language),
 
-        upload_cv(headers)
+            ("upload_cv", upload_cv),
 
-        upload_photo(headers)
+            ("upload_cv", lambda headers: upload_cv(headers))
+            ]
+        # Ejecutar cada paso y acumular el resultado
+        results = []
+        function_results = [("login_cand", total['exito'])]
+        for name, step in steps:
+            _, result = step(headers)
+            results.append(result)
+            function_results.append((name, result))
+        print(f'los resultados son: {results} \n')
 
-        print('se termina el CV del candidato :)\n')
-        return 'Se termino el registro del CV en el candidato'
+        # Calcular éxito
+        casos = len(results)
+        exito = sum(results)
+        fallo = casos - exito
+        print('pasaron:', exito)
+        print('fallaron:', fallo)
+        total = {"exito": exito, "fallo": fallo}
+        if exito == casos:
+            status_message = 'Se termino el registro del CV en el candidato :)\n'
+        else:
+            status_message = 'No se realizo el registro del CV \n'
+
+        print(status_message)
+        return status_message, total, function_results
     except Exception as e:
         print('No se realizo el registro del CV :(\n', e)
-        return 'No se realizo el registro del CV'
+        return 'No se realizo el registro del CV', None, None, None

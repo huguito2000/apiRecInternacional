@@ -1,11 +1,8 @@
-from dotenv import dotenv_values
-
 from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull import work_experience, education, \
     area_experience, hard_skills, course, soft_skills, certificate, language
-from src.services.catalogs import data_user
+from src.services.catalogs import data_user, env
 from src.services.peticiones_HTTP import base, send_post_headers, send_put_body
 
-env = (dotenv_values("etc/.env"))
 
 name, last_name, _, birth_date, email_candidate = data_user(env)
 

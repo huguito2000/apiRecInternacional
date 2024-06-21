@@ -1,7 +1,6 @@
-from dotenv import dotenv_values
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
+from src.services.catalogs import obtener_fecha, data_user, env
 from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.createPassInvalido import \
     create_pass_invalido_cand
 from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.legalesInvalido import \
@@ -14,7 +13,7 @@ from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_d
     register_invalid_candidate
 from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.telefonoNoValido import \
     step_phone_invalid_candidate, step_verify_code_invalido_cand
-from src.services.catalogs import obtener_fecha, data_user
+
 
 fecha = str(obtener_fecha())
 
@@ -48,7 +47,6 @@ def generar_informe_con_datos_no_validos_pdf(nombre_archivo, reporte_login_no_va
 
 def data_no_valid_candidate():
     try:
-        env = dotenv_values("etc/.env")
         name, last_name, _, birth_date, _ = data_user(env)
         reporte_login_no_valido_cand = login_no_valido_cand()
 

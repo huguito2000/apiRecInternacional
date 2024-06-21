@@ -1,14 +1,10 @@
-from dotenv import dotenv_values
-
-from src.services.catalogs import pdfs, subir_archivo, foto
+from src.services.catalogs import pdfs, subir_archivo, foto, env
 from src.services.peticiones_HTTP import send_post_headers, send_put_body
-
-env = dotenv_values("etc/.env")
 
 
 def work_experience(headers):
     try:
-        print('Se amnda el formulario de las experiencia laboral')
+        print('\nSe llena el formulario de las experiencia laboral')
         my_body = [
             {
                 "company": "involve",
@@ -30,8 +26,12 @@ def work_experience(headers):
 
         url = env["URL_SERVER"] + 'user/candidate/work-experience'
         response = send_post_headers(url, headers, my_body, 200)
-        print('Se manda la experiencia laboral :)\n', response)
-        return 'Se manda la experiencia laboral del candidato'
+        if response != 0:
+            print(f'Se manda la experiencia laboral :) \n {response} \n')
+            return 'Se manda la experiencia laboral del candidato', 1
+        else:
+            print('No paso la experiencia laboral :(\n')
+            return 'No paso la experiancia laboral del candidato', 0
     except Exception as e:
         print('No paso la experiencia laboral :(\n', e)
         return 'No paso la experiancia laboral del candidato'
@@ -39,7 +39,7 @@ def work_experience(headers):
 
 def education(headers):
     try:
-        print('Se manda formulario de educacion \n')
+        print('\nSe llena formulario de educacion \n')
         my_body = [
             {
                 "educationStatus": {
@@ -74,16 +74,20 @@ def education(headers):
         ]
         url = env["URL_SERVER"] + 'user/candidate/education'
         response = send_post_headers(url, headers, my_body, 200)
-        print('Se manda la educacion :)\n', response)
-        return 'Se manda la educaion'
+        if response != 0:
+            print('Se manda la educacion :)\n', response)
+            return 'Se manda la educaion', 1
+        else:
+            print('No manda la educación del candidato:( \n')
+            return 'No se mando la educación del candidato', 0
     except Exception as e:
-        print('No manda la educación del candidato:8\n', e)
+        print('No manda la educación del candidato:(\n', e)
         return 'No se mando la educación del candidato'
 
 
 def area_experience(headers):
     try:
-        print('Se manda formulario de areas de experiencia\n')
+        print('\nSe llena formulario de areas de experiencia\n')
 
         my_body = [
             {
@@ -100,8 +104,12 @@ def area_experience(headers):
         ]
         url = env["URL_SERVER"] + 'user/candidate/area'
         response = send_post_headers(url, headers, my_body, 200)
-        print('Se manda el area de experiencia del candidato :)\n', response)
-        return 'Se manda la experiencia laboral'
+        if response != 0:
+            print('Se manda el area de experiencia del candidato :)\n', response)
+            return 'Se manda la experiencia laboral', 1
+        else:
+            print('No se manda el area experiencia :(\n')
+            return 'No se mando la experiencia laboral', 0
     except Exception as e:
         print('No se manda el area experiencia :(\n', e)
         return 'No se mando la experiencia laboral'
@@ -109,7 +117,7 @@ def area_experience(headers):
 
 def hard_skills(headers):
     try:
-        print('se manda las habilidades duras \n')
+        print('\nse llena formulario de las habilidades duras \n')
         my_body = [
             {
                 "level": "EXPERTO",
@@ -118,16 +126,20 @@ def hard_skills(headers):
         ]
         url = env["URL_SERVER"] + 'user/candidate/hard-skill'
         response = send_post_headers(url, headers, my_body, 200)
-        print(response)
-        print('se mando las habilidades duras :)\n')
-        return 'Se manda las habilidades duras'
+        if response != 0:
+            print('se mando las habilidades duras :)\n')
+            return 'Se manda las habilidades duras', 1
+        else:
+            print('No se mandaron las habilidades duras :(\n')
+            return 'No se mandan las habilidades duras del candidato', 0
     except Exception as e:
         print('No se mandaron las habilidades duras :(\n', e)
         return 'No se mandan las habilidades duras del candidato'
 
+
 def course(headers):
     try:
-        print('Se manda el curso \n')
+        print('\nSe llena formulario del curso \n')
         my_body = {
             "dateExpedition": "2022-12-12",
             "hours": "82",
@@ -136,8 +148,12 @@ def course(headers):
         }
         url = env["URL_SERVER"] + 'user/candidate/course'
         response = send_put_body(url, headers, my_body, 200)
-        print('Se manda el curso del candidato :)\n', response)
-        return 'Se manda el curso del candidato'
+        if response != 0:
+            print('Se manda el curso del candidato :)\n')
+            return 'Se manda el curso del candidato', 1
+        else:
+            print('No se mando el curso del candidato :(\n')
+            return 'No se mando el curso del candidato', 0
     except Exception as e:
         print('No se mando el curso del candidato :(\n', e)
         return 'No se mando el curso del candidato'
@@ -145,7 +161,7 @@ def course(headers):
 
 def certificate(headers):
     try:
-        print('Se manda el formulario de certificaión')
+        print('\nSe llena el formulario de certificaión')
         my_body = {
             "credentialId": "udemy121212",
             "institute": "IPN",
@@ -158,8 +174,12 @@ def certificate(headers):
         }
         url = env["URL_SERVER"] + 'user/candidate/certification'
         response = send_put_body(url, headers, my_body, 200)
-        print('se mandan las certificaciones del candidato :)\n', response)
-        return 'Se mandan las certificaiones del candidato'
+        if response != 0:
+            print('se mandan las certificaciones del candidato :)\n', response)
+            return 'Se mandan las certificaiones del candidato', 1
+        else:
+            print('No se envio la certificacion :(\n')
+            return 'No se envio la certificacion del candidato', 0
     except Exception as e:
         print('No se envio la certificacion :(\n', e)
         return 'No se envio la certificacion del candidato'
@@ -167,7 +187,7 @@ def certificate(headers):
 
 def soft_skills(headers):
     try:
-        print('Se mandan las habilidades blandas')
+        print('\nSe llena formulario de las habilidades blandas')
         my_body = [
             {
                 "skill": "Trabajo en equipo"
@@ -175,8 +195,12 @@ def soft_skills(headers):
         ]
         url = env["URL_SERVER"] + 'user/candidate/soft-skill'
         response = send_post_headers(url, headers, my_body, 200)
-        print('se manda las habilidades blandas :)\n', response)
-        return 'Se mandan las habilidades blandas'
+        if response != 0:
+            print('se manda las habilidades blandas :)\n', response)
+            return 'Se mandan las habilidades blandas', 1
+        else:
+            print('No se mandan las habilidades blandas :(\n')
+            return 'No se mandan las habilidades blandas', 0
     except Exception as e:
         print('No se mandan las habilidades blandas :(\n', e)
         return 'No se mandan las habilidades blandas'
@@ -184,7 +208,7 @@ def soft_skills(headers):
 
 def language(headers):
     try:
-        print('Se manda el idioma del candidato\n')
+        print('\nSe llena formulario del idioma del candidato\n')
         my_body = [
             {
                 "language": {
@@ -196,8 +220,12 @@ def language(headers):
         ]
         url = env["URL_SERVER"] + 'user/candidate/language'
         response = send_post_headers(url, headers, my_body, 200)
-        print('Se mandan los idiomas :)\n', response)
-        return 'Se manda los idiomas'
+        if response != 0:
+            print('Se mandan los idiomas :)\n', response)
+            return 'Se manda los idiomas', 1
+        else:
+            print('No se mandaron los lenguajes :(\n')
+            return 'No se mandan los lenguajes', 0
     except Exception as e:
         print('No se mandaron los lenguajes :(\n', e)
         return 'No se mandan los lenguajes'
@@ -205,16 +233,20 @@ def language(headers):
 
 def upload_cv(headers):
     try:
-        print('Se sube el archivo de cv del candidato \n')
+        print('\nSe sube el archivo de cv del candidato \n')
         url = env["URL_SERVER"] + 'files/upload/upload-candidate-cv?md5Hash=123'
         ruta = pdfs()
         print("esta es la ruta del pdf" + ruta)
         response = subir_archivo(ruta, url, headers, 201)
-        print('Se subio el cv :)\n', response)
-        return 'Se sube el CV'
+        if response != 0:
+            print('Se subio el cv :)\n')
+            return 'Se sube el CV', 1
+        else:
+            print('No se subio el cv :(\n')
+            return 'No se subio el CV', 0
     except Exception as e:
         print('No se subio el cv :(\n', e)
-        return 'No se subio el CV'
+        return 'No se subio el CV', 0
 
 
 def upload_photo(headers):
@@ -222,10 +254,13 @@ def upload_photo(headers):
         print('Se suba la foto de perfil del candidato \n')
         url = env["URL_SERVER"] + 'files/upload/uploadFile?typeFile=URL_PHOTO'
         ruta = foto()
-        print(ruta)
         response = subir_archivo(ruta, url, headers, 201)
-        print('Se subio la foto de perfil :)\n', response)
-        return 'Se subio la foto de perfil'
+        if response != 0:
+            print('Se subio la foto de perfil :)\n')
+            return 'Se subio la foto de perfil', 1
+        else:
+            print('No se subio la foto de perfil :(\n')
+            return 'No se subio la foto de perfil', 0
     except Exception as e:
         print('No se subio la foto de perfil :(\n', e)
         return 'No se subio la foto de perfil'

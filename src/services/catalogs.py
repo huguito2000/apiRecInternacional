@@ -5,10 +5,11 @@ import json
 import random
 from json import loads
 from dotenv import dotenv_values
-
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 from src.services.peticiones_HTTP import send_get_headers, send_get
 
-env = dotenv_values("/etc/.env")
+env = dotenv_values("etc/.env")
 
 
 def nombres():
@@ -53,19 +54,34 @@ def foto():
     return ruta
 
 
+def videos():
+    global ruta
+    base_img = get_ruta()
+    video = random.randint(1, 2)
+    ruta = (base_img + 'resources/video/' + str(video) + '.mp4')
+    print(ruta)
+    return ruta
+
+
 def subir_archivo(ruta_archivo, url, headers, code_http):
     files = {'file': open(ruta_archivo, 'rb')}
     req = requests.post(url, headers=headers, files=files)
     print('post status: ' + str(req.status_code))
-    print(req.text)
-    assert req.status_code == code_http
+    if req.status_code == code_http:
+        print('Se subio el archivo correctamente')
+        return 1
+    else:
+        return 0
 
 
 def eliminar_foto(url, headers, code_http):
     req = requests.delete(url, headers=headers)
     print('delete status: ' + str(req.status_code))
-    print(req.text)
-    assert req.status_code == code_http
+    if req.status_code == code_http:
+        print('Se elimino el arhivo')
+        return 1
+    else:
+        return 0
 
 
 def pdfs():
@@ -178,7 +194,6 @@ def get_states():
     pais = random.choice(paises)
     print(pais)
     url = env["URL_SERVER"] + 'management/catalog/state?countryCode=' + pais
-    print(url)
     respuesta = requests.get(url)
     json_dict = loads(respuesta.text)
     num = random.randrange(len(json_dict))
@@ -218,4 +233,80 @@ def get_nacionality():
     return nationality_id
 
 
+def generate_report_graphs(results, function_results, title_report='Resultados de las pruebas datos', report_filename='reports/reporte_pruebas.pdf'):
+    try:
+        """
+        Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
+    
+        :param results: Diccionario con los resultados generales de las pruebas. Ejemplo: {"exito": 5, "fallo": 2}
+        :param function_results: Lista de tuplas con los nombres de las funciones y sus resultados. Ejemplo: [("funcion1", True), ("funcion2", False)]
+        :param report_filename: Nombre del archivo PDF que se generará. Por defecto es 'reporte_pruebas.pdf'.
+        """
+        labels = list(results.keys())
+        sizes = list(results.values())
+        colors = ['lightgreen', 'lightcoral']
+        explode = (0.1, 0)  # Solo "explota" el primer segmento
 
+        fig, ax = plt.subplots(figsize=(8, 8))
+
+        # Crear el gráfico de pastel
+        ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
+               shadow=True, startangle=90)
+        ax.axis('equal')  # Para asegurar que el pie es un círculo
+
+        plt.title(title_report)
+        plt.tight_layout()
+
+        # Agregar los nombres de las funciones y sus resultados debajo del gráfico
+        function_text = 'Funciones utilizadas:\n' + '\n'.join([f"{name}: {'Éxito' if result else 'Fallo'}" for name, result in function_results])
+        plt.figtext(0.5, 0.05, function_text, wrap=True, horizontalalignment='center', fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
+
+        plt.savefig(report_filename)
+    except Exception as e:
+        print('No se genero el reporte con grafica', e)
+
+
+def generate_report_graphs_complete(results, function_results, title, report_filename):
+    """
+    Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
+
+    :param results: Diccionario con los resultados generales de las pruebas. Ejemplo: {"exito": 5, "fallo": 2}
+    :param function_results: Lista de tuplas con los nombres de las funciones y sus resultados. Ejemplo: [("funcion1", True), ("funcion2", False)]
+    :param title: Título del gráfico.
+    :param report_filename: Nombre del archivo PDF que se generará.
+    """
+    labels = list(results.keys())
+    sizes = list(results.values())
+    colors = ['lightgreen', 'lightcoral']
+    explode = (0.1, 0)  # Solo "explota" el primer segmento
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    # Crear el gráfico de pastel
+    ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
+           shadow=True, startangle=90)
+    ax.axis('equal')  # Para asegurar que el pie es un círculo
+
+    plt.title(title)
+    plt.tight_layout()
+
+    # Guardar el gráfico en un archivo PDF
+    with PdfPages(report_filename) as pdf:
+        pdf.savefig(fig)
+
+        # Dividir los resultados en bloques manejables
+        chunk_size = 30  # Número de filas por página
+        for i in range(0, len(function_results), chunk_size):
+            fig, ax = plt.subplots(figsize=(10, 12))
+            ax.axis('tight')
+            ax.axis('off')
+
+            chunk = function_results[i:i + chunk_size]
+            table_data = [['#', 'Función', 'Resultado']] + [[str(i + 1 + j), name, 'Éxito' if result else 'Fallo'] for
+                                                            j, (name, result) in enumerate(chunk)]
+            table = ax.table(cellText=table_data, cellLoc='center', loc='center')
+            table.auto_set_font_size(False)
+            table.set_fontsize(10)
+            table.scale(1.2, 1.2)
+
+            pdf.savefig(fig)
