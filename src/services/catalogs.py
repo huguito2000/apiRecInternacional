@@ -1,4 +1,5 @@
 import os
+import time
 from datetime import date, timedelta, datetime
 import requests
 import json
@@ -205,7 +206,7 @@ def get_states():
 
 def get_ramdom_city():
     pais, iso2 = get_states()
-    response = requests.get(env["URL_SERVER"] + "management/catalog/city?countryCode=" + pais +"&stateCode=" + iso2)
+    response = requests.get(env["URL_SERVER"] + "management/catalog/city?countryCode=" + pais + "&stateCode=" + iso2)
     json_dict = loads(response.text)
     num = random.randrange(len(json_dict))
     print(num)
@@ -233,7 +234,8 @@ def get_nacionality():
     return nationality_id
 
 
-def generate_report_graphs(results, function_results, title_report='Resultados de las pruebas datos', report_filename='reports/reporte_pruebas.pdf'):
+def generate_report_graphs(results, function_results, title_report='Resultados de las pruebas datos',
+                           report_filename='reports/reporte_pruebas.pdf'):
     try:
         """
         Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
@@ -254,59 +256,69 @@ def generate_report_graphs(results, function_results, title_report='Resultados d
                shadow=True, startangle=90)
         ax.axis('equal')  # Para asegurar que el pie es un círculo
 
-        plt.title(title_report)
-        plt.tight_layout()
+        plt.title(title_report, fontweight='bold')
+        plt.subplots_adjust(top=0.85)
 
         # Agregar los nombres de las funciones y sus resultados debajo del gráfico
-        function_text = 'Funciones utilizadas:\n' + '\n'.join([f"{name}: {'Éxito' if result else 'Fallo'}" for name, result in function_results])
-        plt.figtext(0.5, 0.05, function_text, wrap=True, horizontalalignment='center', fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
+        function_text = 'Funciones utilizadas:\n' + '\n'.join(
+            [f"{name}: {'Éxito' if result else 'Fallo'}" for name, result in function_results])
+        plt.figtext(0.5, 0.05, function_text, wrap=True, horizontalalignment='center', fontsize=10,
+                    bbox=dict(facecolor='white', alpha=0.5))
 
         plt.savefig(report_filename)
+
+        plt.show()
+
     except Exception as e:
         print('No se genero el reporte con grafica', e)
 
 
 def generate_report_graphs_complete(results, function_results, title, report_filename):
-    """
-    Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
+    try:
+        """
+        Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
+    
+        :param results: Diccionario con los resultados generales de las pruebas. Ejemplo: {"exito": 5, "fallo": 2}
+        :param function_results: Lista de tuplas con los nombres de las funciones y sus resultados. Ejemplo: [("funcion1", True), ("funcion2", False)]
+        :param title: Título del gráfico.
+        :param report_filename: Nombre del archivo PDF que se generará.
+        """
+        labels = list(results.keys())
+        sizes = list(results.values())
+        colors = ['lightgreen', 'lightcoral']
+        explode = (0.1, 0)  # Solo "explota" el primer segmento
 
-    :param results: Diccionario con los resultados generales de las pruebas. Ejemplo: {"exito": 5, "fallo": 2}
-    :param function_results: Lista de tuplas con los nombres de las funciones y sus resultados. Ejemplo: [("funcion1", True), ("funcion2", False)]
-    :param title: Título del gráfico.
-    :param report_filename: Nombre del archivo PDF que se generará.
-    """
-    labels = list(results.keys())
-    sizes = list(results.values())
-    colors = ['lightgreen', 'lightcoral']
-    explode = (0.1, 0)  # Solo "explota" el primer segmento
+        fig, ax = plt.subplots(figsize=(8, 8))
 
-    fig, ax = plt.subplots(figsize=(8, 8))
+        # Crear el gráfico de pastel
+        ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
+               shadow=True, startangle=90)
+        ax.axis('equal')  # Para asegurar que el pie es un círculo
 
-    # Crear el gráfico de pastel
-    ax.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
-           shadow=True, startangle=90)
-    ax.axis('equal')  # Para asegurar que el pie es un círculo
+        plt.title(title, fontweight='bold')
+        plt.tight_layout()
 
-    plt.title(title)
-    plt.tight_layout()
-
-    # Guardar el gráfico en un archivo PDF
-    with PdfPages(report_filename) as pdf:
-        pdf.savefig(fig)
-
-        # Dividir los resultados en bloques manejables
-        chunk_size = 30  # Número de filas por página
-        for i in range(0, len(function_results), chunk_size):
-            fig, ax = plt.subplots(figsize=(10, 12))
-            ax.axis('tight')
-            ax.axis('off')
-
-            chunk = function_results[i:i + chunk_size]
-            table_data = [['#', 'Función', 'Resultado']] + [[str(i + 1 + j), name, 'Éxito' if result else 'Fallo'] for
-                                                            j, (name, result) in enumerate(chunk)]
-            table = ax.table(cellText=table_data, cellLoc='center', loc='center')
-            table.auto_set_font_size(False)
-            table.set_fontsize(10)
-            table.scale(1.2, 1.2)
-
+        # Guardar el gráfico en un archivo PDF
+        with PdfPages(report_filename) as pdf:
             pdf.savefig(fig)
+
+            # Dividir los resultados en bloques manejables
+            chunk_size = 30  # Número de filas por página
+            for i in range(0, len(function_results), chunk_size):
+                fig, ax = plt.subplots(figsize=(10, 12))
+                ax.axis('tight')
+                ax.axis('off')
+
+                chunk = function_results[i:i + chunk_size]
+                table_data = [['# Test Case', 'Función', 'Resultado']] + [
+                    [str(i + 1 + j), name, 'Éxito' if result else 'Fallo']
+                    for j, (name, result) in enumerate(chunk)]
+
+                table = ax.table(cellText=table_data, cellLoc='center', loc='center')
+                table.auto_set_font_size(False)
+                table.set_fontsize(10)
+                table.scale(1.2, 1.2)
+
+                pdf.savefig(fig)
+    except Exception as e:
+        print('No se pudo crear el reporte completo', e)
