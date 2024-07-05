@@ -3,7 +3,7 @@ from datetime import datetime
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from src.modules.recruiter.login_recruiter import *
-from src.modules.recruiter.profile_recruiter import new_client, settings
+from src.modules.recruiter.settings_recruiter import new_client, settings
 from src.objectRepository.recruiter.ajustesReclu.step_clients import change_cupon
 from src.services.catalogs import obtener_fecha
 from src.modules.recruiter.register_recruiter import register_recruiter

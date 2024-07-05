@@ -9,53 +9,55 @@ from src.modules.Candidate.registro_de_candidato_full_CV import register_complet
 from src.modules.Candidate.settings_candidate import settings_candidate
 from src.modules.Candidate.testDatosNoValidos import candidate_data_invalid
 from src.services.catalogs import generate_report_graphs, obtener_fecha, env, generate_report_graphs_complete
+fecha = obtener_fecha()
+reports = env["DIR_REPORTS"]
 
 
 def all_report_graphs():
     try:
-        fecha = obtener_fecha()
+
         email_candidate = env["EMAIL_CANDIDATE_HAPPY_PATH"]
 
         _, total, function_results = i_forgot_password_candidate()
         generate_report_graphs(total, function_results, 'Resultado de i_forgot_password_candidate',
-                               f'reports/olvide mi contraseña {fecha}.pdf')
+                               reports + f'{reports}/olvide mi contraseña {fecha}.pdf')
 
         _, _, _, total, function_results = login_cand(email_candidate, pass_email)
         generate_report_graphs(total, function_results, 'Resultado de login_cand',
-                               f'reports/reporte login candidato {fecha}.pdf')
+                               f'{reports}/reporte login candidato {fecha}.pdf')
 
         _, email_candidate2, total, function_results = register_onboarding_candidate()
         generate_report_graphs(total, function_results, 'Resultado de register_onboarding_candidate',
-                               f'reports/registro onboarding {fecha}.pdf')
+                               f'{reports}/registro onboarding {fecha}.pdf')
 
         _, email_candidate2, total, function_results = register_onboarding_candidate()
         _, total, function_results = register_cv(email_candidate2)
         generate_report_graphs(total, function_results, 'Resultado de register_cv',
-                               f'reports/registro con cv {fecha}.pdf')
+                               f'{reports}/registro con cv {fecha}.pdf')
 
         _, email_candidate, total, function_results = register_complete_full_cv()
         generate_report_graphs(total, function_results, 'Resultado de register_complete_full_cv',
-                               f'reports/registro con full cv {fecha}.pdf')
+                               f'{reports}/registro con full cv {fecha}.pdf')
 
         _, _, _, total, function_results = postulacion_candidato(email_candidate)
         generate_report_graphs(total, function_results, 'Resultado de postulacion_candidato',
-                               f'reports/postulación {fecha}.pdf')
+                               f'{reports}/postulación {fecha}.pdf')
 
         _, total, function_results = search_vacancy()
         generate_report_graphs(total, function_results, 'Resultado de search_vacancy',
-                               f'reports/busqueda de vacantes {fecha}.pdf')
+                               f'{reports}/busqueda de vacantes {fecha}.pdf')
 
         _, total, function_results = my_data_profile()
         generate_report_graphs(total, function_results, 'Resultado de my_data_profile',
-                               f'reports/mis datos {fecha}.pdf')
+                               f'{reports}/mis datos {fecha}.pdf')
 
         _, total, function_results = settings_candidate()
         generate_report_graphs(total, function_results, 'Resultado de settings_candidate',
-                               f'reports/configuración {fecha}.pdf')
+                               f'{reports}/configuración {fecha}.pdf')
 
         _, total, function_results = candidate_data_invalid()
         generate_report_graphs(total, function_results, 'Resultado de candidate_data_invalid',
-                               f'reports/reporte candidato datos invalidos {fecha}.pdf')
+                               f'{reports}/reporte candidato datos invalidos {fecha}.pdf')
     except Exception as e:
         print("No se generaron los reporte", e)
 
@@ -63,8 +65,6 @@ def all_report_graphs():
 def report_graphs_complete():
     try:
         email_candidate = env["EMAIL_CANDIDATE_HAPPY_PATH"]
-        fecha = obtener_fecha()
-
         steps = [
             ("login_cand", login_cand),
             ("candidate_data_invalid", candidate_data_invalid),
@@ -130,7 +130,7 @@ def report_graphs_complete():
         print(status_message)
 
         generate_report_graphs_complete(total, function_results, 'Resultado de happy path',
-                                        f'reports/happy_path_{fecha}.pdf')
+                                        f'{reports}/happy_path_{fecha}.pdf')
 
         return status_message
     except Exception as e:

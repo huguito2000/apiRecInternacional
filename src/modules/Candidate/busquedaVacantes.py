@@ -2,7 +2,7 @@ from src.modules.Candidate.loginCand import login_cand, pass_email, email_candid
 from src.objectRepository.candidate.busqueda.busquedaDeVacantes import step_search_position, \
     step_search_salary, \
     step_search_workday, step_search_modality, step_search_type_contract, step_search_type_company, step_search_time
-from src.services.catalogs import generate_report_graphs
+
 
 
 def search_vacancy():

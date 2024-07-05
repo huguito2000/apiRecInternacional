@@ -7,7 +7,7 @@ from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandi
 def register_onboarding_candidate():
     try:
         # Extraer datos del usuario
-        name, last_name, _, birth_date, _ = data_user(env)
+        names, last_name, _, birth_date, _ = data_user(env)
 
         # Registrar al candidato
         headers, email_candidate, total = step_register_candidate()
@@ -20,7 +20,7 @@ def register_onboarding_candidate():
             ("step_phone_candidate", step_phone_candidate),
             ("step_resend_code", step_resend_code),
             ("step_verify_code_cand", step_verify_code_cand),
-            ("step_names_candidate", lambda headers: step_names_candidate(headers, name, last_name, birth_date))
+            ("step_names_candidate", lambda headers: step_names_candidate(headers, names, last_name, birth_date))
         ]
 
         # Ejecutar cada paso y acumular el resultado

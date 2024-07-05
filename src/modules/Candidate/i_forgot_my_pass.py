@@ -1,6 +1,5 @@
 from src.modules.Candidate.loginCand import login_cand, email_candidate, pass_email
-from src.objectRepository.candidate.registroCand.i_forgot_pass import i_forgot_password, confirm_restore_pass
-from src.services.catalogs import generate_report_graphs
+from src.object_repository.candidate.i_forgot_pass import i_forgot_password, confirm_restore_pass
 
 
 def i_forgot_password_candidate():

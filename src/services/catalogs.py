@@ -13,6 +13,7 @@ from src.services.peticiones_HTTP import send_get_headers, send_get
 env = dotenv_values("etc/.env")
 
 
+
 def nombres():
     Nombres = ['Hugo', 'Dennis', 'Miguel', 'Gabriel', 'Javi', 'Lucio', 'Jesus', 'Victor', 'Abraham', 'Juan', 'Rafael',
                'Ramiro', 'Pedro', 'Julian', 'Valentin', 'Camilo', 'Andrés', 'Gerard', 'Ana', 'Leo', 'Sara', 'Nora',
@@ -175,7 +176,7 @@ def data_user(env):
 
 def obtener_fecha():
     now = datetime.now()
-    fecha = str(now.strftime('%d del %m del %Y a las %H:%M'))
+    fecha = str(now.strftime('%d del %m del %Y a las %H_%M'))
     return fecha
 
 

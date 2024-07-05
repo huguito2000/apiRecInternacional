@@ -1,5 +1,5 @@
 from src.modules.Candidate.loginCand import email_candidate, pass_email, login_cand
-from src.objectRepository.candidate.settings_candidate.security import change_email_candidate, verify_change_phone, \
+from src.object_repository.candidate.settings_candidate.security import change_email_candidate, verify_change_phone, \
     change_phone, change_pass_candiate, change_permisssion, delete_account
 
 

@@ -1,7 +1,7 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from src.modules.recruiter.login_recruiter import login_recruiter
-from src.modules.recruiter.profile_recruiter import new_client, settings
+from src.modules.recruiter.settings_recruiter import new_client, settings
 from src.modules.recruiter.register_recruiter import register_recruiter
 from src.services.catalogs import obtener_fecha
 

@@ -1,4 +1,4 @@
-from src.modules.Candidate.loginCand import login_cand, pass_email
+from src.modules.Candidate.loginCand import login_cand, pass_email, email_candidate
 from src.objectRepository.candidate.postulacion.step_postulacion import postulacion, \
     exp_laboral_cuestionario, habilidad_profesional, expectativa_salarial, condiciones_de_contratacion, \
     seleccion_de_permisos, habilidad_blandas, change_permission_postulation, upload_questions_video_presentation, \
@@ -6,9 +6,12 @@ from src.objectRepository.candidate.postulacion.step_postulacion import postulac
 
 
 def postulacion_candidato(email_candidate):
+
     try:
         # Login del candidato
         _, headers, _, total, _ = login_cand(email_candidate, pass_email)
+        print('Se hace login con el candidato:', email_candidate)
+
 
         # Realizar la postulación inicial
         _, postulation_id, total2 = postulacion(headers)
@@ -45,6 +48,7 @@ def postulacion_candidato(email_candidate):
         else:
             print('No se hizo la postulación :( \n')
             return 'No se hizo la postulación del candidato', None, None, total, function_results
+
     except Exception as e:
         print('No se hizo la postulación :( \n', e)
         return 'No se hizo la postulación del candidato', None, None, None, None
