@@ -1,4 +1,4 @@
-from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate
+from src.object_repository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate
 from src.services.catalogs import data_user, env
 from src.services.peticiones_HTTP import send_post
 

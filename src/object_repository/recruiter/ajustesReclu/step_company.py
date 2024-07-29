@@ -9,13 +9,13 @@ def photo_company(headers):
         print(ruta)
         respuesta = subir_archivo(ruta, url_foto, headers, 200)
         if respuesta != 0:
-            print('Se subio la foto de la empresa')
+            print('Se subio la foto de la empresa \n')
             return 'Se subio corretamente la imagen de la empresa', 1
         else:
-            print('No se subio la imagen de la empresa')
-            return 'No se subio la imagen de la empresa'
+            print('No se subio la imagen de la empresa\n')
+            return 'No se subio la imagen de la empresa', 0
     except Exception as e:
-        print('no se pudo subir la foto de la empresa', e)
+        print('no se pudo subir la foto de la empresa\n', e)
         return 'no se pudo subir la foto de empresa', 0
 
 
@@ -82,12 +82,12 @@ def company(headers):
         url = base + 'user/company'
         respuesta = send_patch(url, headers, my_body, 200)
         if respuesta != 0:
-            print('\n se hicieron los cambios de la empresa')
+            print('se hicieron los cambios de la empresa \n')
             return 'Se hiceiron los cambios de la empresa', 1
         else:
-            print('No se hicieron los cambios en la empresa')
+            print('No se hicieron los cambios en la empresa \n')
             return 'No se hicieron los cambios en la empresa', 0
     except Exception as e:
-        print('\n no se pudieron subir los cambios de la empresa', {e})
+        print('no se pudieron subir los cambios de la empresa \n', e)
         return 'no se subieron los cambios de la empresa'
 

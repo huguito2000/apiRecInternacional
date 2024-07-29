@@ -240,15 +240,27 @@ def generate_report_graphs(results, function_results, title_report='Resultados d
     try:
         """
         Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
-    
+
         :param results: Diccionario con los resultados generales de las pruebas. Ejemplo: {"exito": 5, "fallo": 2}
         :param function_results: Lista de tuplas con los nombres de las funciones y sus resultados. Ejemplo: [("funcion1", True), ("funcion2", False)]
         :param report_filename: Nombre del archivo PDF que se generará. Por defecto es 'reporte_pruebas.pdf'.
         """
-        labels = list(results.keys())
-        sizes = list(results.values())
-        colors = ['lightgreen', 'lightcoral']
-        explode = (0.1, 0)  # Solo "explota" el primer segmento
+        if results:
+            labels = list(results.keys())
+            sizes = list(results.values())
+            colors = ['lightgreen', 'lightcoral'][:len(labels)]
+            explode = (0.1,) + (0,) * (len(labels) - 1)  # Explota el primer segmento
+        else:
+            labels = ["No Data"]
+            sizes = [1]
+            colors = ['lightgray']
+            explode = (0.1,)  # Explota el único segmento
+
+        if function_results:
+            function_text = 'Funciones utilizadas:\n' + '\n'.join(
+                [f"{name}: {'Éxito' if result else 'Fallo'}" for name, result in function_results])
+        else:
+            function_text = 'No se utilizaron funciones.'
 
         fig, ax = plt.subplots(figsize=(8, 8))
 
@@ -261,8 +273,6 @@ def generate_report_graphs(results, function_results, title_report='Resultados d
         plt.subplots_adjust(top=0.85)
 
         # Agregar los nombres de las funciones y sus resultados debajo del gráfico
-        function_text = 'Funciones utilizadas:\n' + '\n'.join(
-            [f"{name}: {'Éxito' if result else 'Fallo'}" for name, result in function_results])
         plt.figtext(0.5, 0.05, function_text, wrap=True, horizontalalignment='center', fontsize=10,
                     bbox=dict(facecolor='white', alpha=0.5))
 
@@ -271,23 +281,32 @@ def generate_report_graphs(results, function_results, title_report='Resultados d
         plt.show()
 
     except Exception as e:
-        print('No se genero el reporte con grafica', e)
+        print('No se generó el reporte con gráfica', e)
 
 
 def generate_report_graphs_complete(results, function_results, title, report_filename):
     try:
         """
         Genera un reporte en PDF con gráficos basados en los resultados de las pruebas y los nombres de las funciones.
-    
+
         :param results: Diccionario con los resultados generales de las pruebas. Ejemplo: {"exito": 5, "fallo": 2}
         :param function_results: Lista de tuplas con los nombres de las funciones y sus resultados. Ejemplo: [("funcion1", True), ("funcion2", False)]
         :param title: Título del gráfico.
         :param report_filename: Nombre del archivo PDF que se generará.
         """
-        labels = list(results.keys())
-        sizes = list(results.values())
-        colors = ['lightgreen', 'lightcoral']
-        explode = (0.1, 0)  # Solo "explota" el primer segmento
+        if results:
+            labels = list(results.keys())
+            sizes = list(results.values())
+            colors = ['lightgreen', 'lightcoral'][:len(labels)]
+            explode = (0.1,) + (0,) * (len(labels) - 1)  # Explota el primer segmento
+        else:
+            labels = ["No Data"]
+            sizes = [1]
+            colors = ['lightgray']
+            explode = (0.1,)  # Explota el único segmento
+
+        if not function_results:
+            function_results = []
 
         fig, ax = plt.subplots(figsize=(8, 8))
 

@@ -1,7 +1,6 @@
 import requests
 
 from src.modules.Candidate.loginCand import pass_email, login_cand
-from src.objectRepository.candidate.obj_loginCand import step_login_candidate
 from src.services.catalogs import env
 from src.services.peticiones_HTTP import base, send_post, send_post_headers_sin_body
 

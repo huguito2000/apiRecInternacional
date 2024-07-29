@@ -1,5 +1,5 @@
 from src.services.catalogs import data_user, env
-from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate, \
+from src.object_repository.candidate.registroCand.registerValid.stepRegisterCandidate import step_register_candidate, \
     step_create_pass_candidate, step_permission_candidate, step_phone_candidate, step_resend_code, \
     step_verify_code_cand, step_names_candidate
 

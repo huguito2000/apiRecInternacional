@@ -1,7 +1,6 @@
 from src.services.catalogs import env
 from src.services.peticiones_HTTP import send_get_headers
 
-
 url_base = env["URL_BUSCADOR"]
 
 

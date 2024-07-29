@@ -14,7 +14,7 @@ fecha = obtener_fecha()
 reports = env["DIR_REPORTS"]
 
 
-def gui_candidate_prueba():
+def gui_candidate_graphs():
 
     def reporte_i_forgot_password_candidate():
         print('reporte de olvide mi contraseña')
@@ -37,7 +37,7 @@ def gui_candidate_prueba():
     def reporte_postulacion_candidato():
         print('reporte postulacion del candidato')
 
-        _, _, _, total, function_results = postulacion_candidato()
+        _, _, _, total, function_results = postulacion_candidato(email_candidate)
         generate_report_graphs(total, function_results, 'Resultado de postulacion_candidato',
                                f'{reports}/postulación {fecha}.pdf')
 

@@ -1,7 +1,7 @@
 from src.modules.recruiter.login_recruiter import login_recruiter, email, pass_email
 from src.object_repository.recruiter.ajustesReclu.step_company import company, photo_company
 from src.object_repository.recruiter.ajustesReclu.step_settings import name_profile, photo_profile, change_pass, \
-    change_email
+    change_email, delete_photo_recruiter
 from src.object_repository.recruiter.ajustesReclu.step_recruiting_team import recruiting_team
 from src.services.catalogs import data_user, env
 
@@ -10,7 +10,7 @@ def settings():
     try:
         print('Inicia la sección de ajustes')
         _, headers, _, total, _ = login_recruiter(email, pass_email)
-        name, last_name, second_last_name, _, new_email = data_user(env)
+        nombre, last_name, second_last_name, _, new_email = data_user(env)
         _, _, _, _, new_email2 = data_user(env)
 
         steps = [
@@ -21,13 +21,15 @@ def settings():
 
             ("photo_company", photo_company),
 
+            ("delete_photo_recruiter", delete_photo_recruiter),
+
             ("company", company),
 
             ("recruiting_team", lambda headers: recruiting_team(headers, new_email2)),
 
             ("change_email", lambda headers: change_email(headers, new_email)),
 
-            ("name_profile", lambda headers: name_profile(headers, name, last_name, second_last_name))
+            ("name_profile", lambda headers: name_profile(headers, nombre, last_name, second_last_name))
         ]
 
         results = []

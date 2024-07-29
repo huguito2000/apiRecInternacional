@@ -3,7 +3,7 @@ from reportlab.pdfgen import canvas
 
 from src.modules.Candidate.loginCand import login_cand, pass_email
 from src.modules.Candidate.registro_de_candidato_full_CV import register_complete_full_cv
-from src.objectRepository.candidate.postulacion.step_postulacion import postulacion, exp_laboral_cuestionario, \
+from src.object_repository.candidate.postulacion.step_postulacion import postulacion, exp_laboral_cuestionario, \
     habilidad_profesional, habilidad_blandas, expectativa_salarial, condiciones_de_contratacion, seleccion_de_permisos
 from src.services.catalogs import obtener_fecha
 

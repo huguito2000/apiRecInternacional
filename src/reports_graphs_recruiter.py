@@ -8,12 +8,13 @@ from src.modules.recruiter.login_recruiter import login_recruiter, email, pass_e
 from src.modules.recruiter.register_recruiter import register_recruiter
 from src.modules.recruiter.settings_recruiter import settings
 from src.services.catalogs import obtener_fecha, env, generate_report_graphs
+from src.test.create_report_recruiter.create_graphs_recruiter import report_complete_recruiter_graphs
 
 fecha = obtener_fecha()
 reports = env["DIR_REPORTS"]
 
 
-def gui_recruiter_prueba():
+def gui_recruiter_graphs():
 
     def report_login_recruiter():
         print('reporte de inicio de sesión del candidato')
@@ -58,7 +59,7 @@ def gui_recruiter_prueba():
                                f'{reports}/reporte seccion de crear vacante IA {fecha}.pdf')
 
     def report_happy_path_recruiter():
-        pass
+        report_complete_recruiter_graphs()
 
 
 

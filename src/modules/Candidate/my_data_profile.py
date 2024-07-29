@@ -1,6 +1,6 @@
 from src.modules.Candidate.loginCand import email_candidate, pass_email
-from src.objectRepository.candidate.obj_loginCand import step_login_candidate
-from src.objectRepository.candidate.registroCand.registerValid.my_data.data_profile import delete_photo, \
+from src.object_repository.candidate.obj_loginCand import step_login_candidate
+from src.object_repository.candidate.registroCand.registerValid.my_data.data_profile import delete_photo, \
     change_photo_profile, profile_search, delete_profile_search, change_profile
 
 

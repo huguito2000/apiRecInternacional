@@ -1,9 +1,9 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from src.modules.Candidate.loginCand import login_cand
-from src.objectRepository.candidate.busqueda.busquedaDeVacantes import step_search_position, step_search_salary, \
+from src.object_repository.candidate.busqueda.busquedaDeVacantes import step_search_position, step_search_salary, \
     step_search_workday, step_search_modality, step_search_type_contract, step_search_type_company, step_search_time
-from src.objectRepository.candidate.obj_loginCand import email_candidate, pass_email
+from src.object_repository.candidate.obj_loginCand import email_candidate, pass_email
 from src.services.catalogs import obtener_fecha
 
 fecha = obtener_fecha()

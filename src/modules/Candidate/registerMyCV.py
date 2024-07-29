@@ -1,5 +1,5 @@
 from src.modules.Candidate.loginCand import pass_email, login_cand
-from src.objectRepository.candidate.registroCand.registerValid.my_cv.stepCVFull import work_experience, education, \
+from src.object_repository.candidate.registroCand.registerValid.my_cv.stepCVFull import work_experience, education, \
     area_experience, hard_skills, course, certificate, soft_skills, language, upload_cv, upload_photo
 
 

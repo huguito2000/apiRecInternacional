@@ -1,6 +1,5 @@
 import random
 import requests
-from src.modules.Candidate.loginCand import login_cand, pass_email
 from src.modules.recruiter.login_recruiter import login_recruiter
 from src.services.catalogs import salary_min, subir_archivo, videos, env
 from src.services.peticiones_HTTP import send_get_headers, send_post_headers_sin_body, send_post_headers, \

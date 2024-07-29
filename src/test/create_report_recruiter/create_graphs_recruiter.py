@@ -52,7 +52,7 @@ def all_reports_recruiter():
         print('No se generaron los reportes de reclutador', e)
 
 
-def report_complete_recruiter():
+def report_complete_recruiter_graphs():
     try:
         print('inicia el reporte completo del reclutador')
         steps = [
@@ -114,7 +114,7 @@ def report_complete_recruiter():
         if exito == casos:
             status_message = 'Se creo el reporte completo de reclutador :)\n'
         else:
-            status_message = 'No se creo el reporte completo de reclutador \n'
+            status_message = 'No pasaron las pruebas completas de reclutador \n'
 
         print(status_message)
 

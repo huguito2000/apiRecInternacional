@@ -118,7 +118,7 @@ def position_title(headers):
                 "stripeCustomerId": "cus_Pwshh0g63DyLpN",
                 "legalId": None,
                 "legalName": "hugo",
-                "address": "dsdad",
+                "address": "mexico",
                 "zipCode": "56615"
             },
             "typeSalary": {
@@ -207,7 +207,7 @@ def position_title(headers):
             return 'Se creo el titulo de vacante', vacant_id, 1
         else:
             print('No se creo el titulo de la vacante :(\n')
-            return 'No se creo el titulo de la vacante :(', 0
+            return 'No se creo el titulo de la vacante :(',None, 0
     except Exception as e:
         print('No se crea el primer paso :(\n', e)
         return 'No se crea el primer paso', 0

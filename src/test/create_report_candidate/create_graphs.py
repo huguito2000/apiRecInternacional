@@ -135,3 +135,4 @@ def report_graphs_complete():
         return status_message
     except Exception as e:
         print('No se hizo el reporte', e)
+

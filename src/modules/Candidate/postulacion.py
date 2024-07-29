@@ -1,5 +1,5 @@
 from src.modules.Candidate.loginCand import login_cand, pass_email, email_candidate
-from src.objectRepository.candidate.postulacion.step_postulacion import postulacion, \
+from src.object_repository.candidate.postulacion.step_postulacion import postulacion, \
     exp_laboral_cuestionario, habilidad_profesional, expectativa_salarial, condiciones_de_contratacion, \
     seleccion_de_permisos, habilidad_blandas, change_permission_postulation, upload_questions_video_presentation, \
     upload_video_interview, delete_postulation
@@ -107,7 +107,6 @@ def delete_postulation_candidate(headers, postulation_id):
             return 'No se hace la eliminacion de la postulacion', total
     except Exception as e:
         print(f'no se hace la eliminación de la postulación{e}\n')
-        return 'No se hace la eliminacion de la postulacion'
-
+        return 'No se hace la eliminacion de la postulacion', 0
 
 

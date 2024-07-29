@@ -1,5 +1,5 @@
 from itertools import product
-from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_permission_candidate
+from src.object_repository.candidate.registroCand.registerValid.stepRegisterCandidate import step_permission_candidate
 from src.services.catalogs import env
 from src.services.peticiones_HTTP import base, send_post_headers
 

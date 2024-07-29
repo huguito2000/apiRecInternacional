@@ -1,9 +1,6 @@
-from dotenv import dotenv_values
-
 from src.services.catalogs import env
 from src.services.peticiones_HTTP import base, send_post_headers_sin_body
-from src.objectRepository.candidate.registroCand.registerValid.stepRegisterCandidate import step_phone_candidate, \
-    step_verify_code_cand
+
 
 
 data_payloads = [

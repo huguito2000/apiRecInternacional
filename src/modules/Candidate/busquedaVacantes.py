@@ -1,5 +1,5 @@
 from src.modules.Candidate.loginCand import login_cand, pass_email, email_candidate
-from src.objectRepository.candidate.busqueda.busquedaDeVacantes import step_search_position, \
+from src.object_repository.candidate.busqueda.busquedaDeVacantes import step_search_position, \
     step_search_salary, \
     step_search_workday, step_search_modality, step_search_type_contract, step_search_type_company, step_search_time
 

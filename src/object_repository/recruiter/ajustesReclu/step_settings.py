@@ -3,7 +3,8 @@ from dotenv import dotenv_values
 from src.modules.Candidate.loginCand import pass_email
 from src.modules.recruiter.login_recruiter import login_recruiter
 from src.services.catalogs import foto, subir_archivo, nombres, apellidos, env
-from src.services.peticiones_HTTP import base, send_post_headers_sin_body, send_put, send_patch
+from src.services.peticiones_HTTP import base, send_post_headers_sin_body, send_put, send_patch, send_delete, \
+    send_delete_sin_body
 
 
 def photo_profile(headers):
@@ -13,14 +14,29 @@ def photo_profile(headers):
         print(ruta)
         resultado = subir_archivo(ruta, urlfoto, headers, 201)
         if resultado != 0:
-            print('\nSe subio la foto de perfil')
+            print('Se subio la foto de perfil\n')
             return 'Se subio la foto de perfil', 1
         else:
-            print('No se subio la foto de perfil')
+            print('No se subio la foto de perfil\n')
             return 'No se subio la foto de perfil', 0
     except Exception as e:
-        print('\n No se subio la foto de perfil', e)
+        print('No se subio la foto de perfil\n', e)
         return 'No se subio la foto de perfil', 0
+
+
+def delete_photo_recruiter(headers):
+    try:
+        url = env["URL_SERVER"] +"files/upload/delete-file?typeFile=URL_PHOTO"
+        resultado = send_delete_sin_body(url, headers, 200)
+        if resultado != 0:
+            print('Foto eliminada exitosamente\n')
+            return 'Foto eliminada exitosamente', 1
+        else:
+            print('No se elimino la foto \n')
+            return 'No se elimino la foto', 0
+    except Exception as e:
+        print('No se elimino la foto', e)
+        return 'No se elimino la foto', 0
 
 
 def change_pass(headers):
@@ -35,12 +51,12 @@ def change_pass(headers):
                 print('se cambio la contraseña \n')
             return 'Se cambio la contraseña', 1
         else:
-            print('No se cambio la contraseña')
+            print('No se cambio la contraseña\n')
             return 'No se camnbio la contraseña', 0
 
     except Exception as e:
-        print('\n No se subio el cambio de la contraseña', e)
-        return 'No se subio el cambio de la contraseña'
+        print('\n No se subio el cambio de la contraseña\n', e)
+        return 'No se subio el cambio de la contraseña', 0
 
 
 def change_email(headers, new_email):
@@ -69,7 +85,7 @@ def change_email(headers, new_email):
             print('No se pudo hacer el cambio de email\n')
             return 'No se realizo el cambio de nuevo email', 0
     except Exception as e:
-        print('No se pudo hacer el cambio de email', e)
+        print('No se pudo hacer el cambio de email\n', e)
         return 'No se realizo el cambio de nuevo email'
 
 
@@ -94,6 +110,7 @@ def name_profile(headers, nombre, apellido_p, apellido_m):
         ]
 
         url = env["URL_SERVER"] + 'user/recruiter'
+        print(my_body)
         respuesta = send_patch(url, headers, my_body, 200)
         if respuesta != 0:
             print('se cambian los nombres correctamente')

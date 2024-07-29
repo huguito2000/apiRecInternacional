@@ -102,5 +102,5 @@ def post_vacancy(vacant_id, headers):
             print('No se publico la vacante')
             return 'No se publico la vacante', 0
     except Exception as e:
-        print('No se publico la vacante :( \n', {e})
+        print('No se publico la vacante :( \n', e)
         return 'No se publico la vacante', 0

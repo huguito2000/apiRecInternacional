@@ -1,17 +1,17 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from src.services.catalogs import obtener_fecha, data_user, env
-from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.createPassInvalido import \
+from src.object_repository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.createPassInvalido import \
     create_pass_invalido_cand
-from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.legalesInvalido import \
+from src.object_repository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.legalesInvalido import \
     step_send_all_combinations_legals
-from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.loginNoValido import \
+from src.object_repository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.loginNoValido import \
     login_no_valido_cand, login_cand_bloqueado
-from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.namesInvalidos import \
+from src.object_repository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.namesInvalidos import \
     step_names_invalid_cand
-from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.registro_invalido import \
+from src.object_repository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.registro_invalido import \
     register_invalid_candidate
-from src.objectRepository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.telefonoNoValido import \
+from src.object_repository.candidate.registroCand.dataNoValidCandidate.register_data_no_valid.telefonoNoValido import \
     step_phone_invalid_candidate, step_verify_code_invalido_cand
 
 

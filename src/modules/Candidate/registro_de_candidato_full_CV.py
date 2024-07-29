@@ -1,6 +1,4 @@
 from src.modules.Candidate.registerOnboading import register_onboarding_candidate
-
-
 from src.modules.Candidate.registerMyCV import register_cv
 
 
